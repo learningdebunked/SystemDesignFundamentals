@@ -129,4 +129,9 @@ There are two broad categories of Proxies:
    
 2) HTTP insecure proxy: This is used in Service Meshes. TCP Packet is routed to proxy which then looks at the data to know the actual direction. Server may know the client if host is added as a Layer 7 header. Http1.0 did not support host as the header. Http2.0 supports host as a header.
 
+What is CDN and how does it work?
+Examples of CDN:
+Why are CDN required ?
+What are the benefits of using a CDN ?
+What are the disadvantages of using a CDN ?
 
