@@ -73,8 +73,17 @@ GSLB is not a reverse proxy. It doesn’t proxy an application . This operates a
 
 ![Screen Shot 2022-04-28 at 7 47 11 AM](https://user-images.githubusercontent.com/7702406/165779656-e7fd442e-2c28-47d8-8769-fc6c7d31fbc5.png)
 
-Finally some of the commercially available Load balancers:
+Some of the commercially available Load balancers:
 F5 and Citrix
+
+Load balancing algorithms
+
+1) Round robin
+2) WRR
+3) Least connections
+4) Least Response time
+5) IP Hash 
+6) Consistent hashing 
 
 **What are Proxies? What is a Forward Proxy and a Reverse Proxy?**
 
