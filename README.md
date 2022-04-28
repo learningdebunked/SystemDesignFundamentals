@@ -78,7 +78,9 @@ F5 and Citrix
 
 **What are Proxies? What is a Forward Proxy and a Reverse Proxy?**
 
-Forward Proxy - Used to proxy Clients i.e. Server doesn't know who is the client.
+![Screen Shot 2022-04-28 at 3 16 57 PM](https://user-images.githubusercontent.com/7702406/165856779-8557e556-915e-497e-96a5-9e0c84d2cd20.png)
+ 
+Forward Proxy - Used to proxy Clients i.e. Server doesn't know who is the
 
 Reverse Proxy - Used to proxy Servers i.e. Client doesn't know who is the server.
 
