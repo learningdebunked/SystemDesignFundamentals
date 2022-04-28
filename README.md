@@ -75,3 +75,6 @@ GSLB is not a reverse proxy. It doesn’t proxy an application . This operates a
 
 Finally some of the commercially available Load balancers:
 F5 and Citrix
+
+**What are Proxies? What is a Forward Proxy and a Reverse Proxy?**
+
