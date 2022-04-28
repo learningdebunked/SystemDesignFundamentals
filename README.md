@@ -82,7 +82,42 @@ F5 and Citrix
  
 Forward Proxy - Used to proxy Clients i.e. Server doesn't know who is the
 
+Uses and Benefits:
+
+1) Anonymity
+2) Caching
+3) Blocking unwanted sites
+4) GeoFencing - For instance Redirecting users from a certain location to access only servers from a certain locations
+
 Reverse Proxy - Used to proxy Servers i.e. Client doesn't know who is the server.
 
+Uses: 
+1) DDOS 
+2) Firwall
+3) Block bots and hackers
+4) Load balancing
+5) In the context of microservices --> Side car Proxy or Http Proxy or TCP Proxy 
+6) Canary deployments - Set a rule in reverse proxy for experiments For ex: say 8% of the traffic to test a feature
+
+Service Mesh - Proxy and Reverse Proxy are used at the same time based of side car proxy like Envoy or Istio
+
+There are other type of Proxies also which are the **TLS Termination Proxies** , which can decrypt the encrypted data sent through them.
+
+
 One of the most common use cases of Reverse Proxy is a Load balancer.
+
+Forward or Reverse proxy is determined by the direction in which data is being sent
+
+Advantages:
+
+1) Proxies can be use to selectively send and block requests
+2) Log or Monitor requests
+3) Cache responses
+
+There are two broad categories of Proxies:
+1) Transparent proxy: Only looks at Layer 3 and Layer 4 and if the client is allowed to access the server , the request is only then forwarded
+   This type of proxy is used only for filtering requests
+   
+2) HTTP insecure proxy: This is used in Service Meshes. TCP Packet is routed to proxy which then looks at the data to know the actual direction. Server may know the client if host is added as a Layer 7 header. Http1.0 did not support host as the header. Http2.0 supports host as a header.
+
 
