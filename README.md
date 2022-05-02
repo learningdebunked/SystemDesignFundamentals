@@ -130,12 +130,29 @@ There are two broad categories of Proxies:
 2) HTTP insecure proxy: This is used in Service Meshes. TCP Packet is routed to proxy which then looks at the data to know the actual direction. Server may know the client if host is added as a Layer 7 header. Http1.0 did not support host as the header. Http2.0 supports host as a header.
 
 **What is CDN and how does it work?**
-Examples of CDN:
+Examples of CDN: Cloud flare
 1) Why are CDN required ?
-2) What are the benefits of using a CDN ?
-3) What are the disadvantages of using a CDN ?
-4) What are the types of CDN ?
-   There are two types of CDN. A pull CDN and a Push CDN
+For serving static content like images , html files and videos
+3) What are the benefits of using a CDN ?
+The client makes a direct call to the CDN instead of the web servers to retrieve the STATIC content and render 
+5) What are the disadvantages of using a CDN ?
+If the users are restricted to one geography , using a CDN might be counter productive as it introduces another hop. The origin web server can itself directly serve the static content
+7) What are the types of CDN ?
+There are two types of CDN and two categories
+
+a) CDN for Static content
+b) CDN for Dynamic content
+
+Broad categories:
+a) Pull CDN
+b) Push CDN
+
+A Pull CDN is preferred , i.e. assets are lazily loaded into the CDN upon request from the user. Subsequent requests load fast.
+Cache control headers are used to set parameters like TTL
+
+A Push CDN is developers push assets to the CDN whenever there is a change
+
+
 6) What scenarios do we use a CDN?
 
 
