@@ -130,6 +130,35 @@ There are two broad categories of Proxies:
 2) HTTP insecure proxy: This is used in Service Meshes. TCP Packet is routed to proxy which then looks at the data to know the actual direction. Server may know the client if host is added as a Layer 7 header. Http1.0 did not support host as the header. Http2.0 supports host as a header.
 
 **What is CDN and how does it work?**
+
+CDN stands for Content Distribution Network
+This is modern and popular solution for minimizing request latency when fetching static assets from a server. These are composed of group of servers that spread out globally such that no matter how far a user is from origin server , they will always be close to a CDN Server.
+
+Instead of fetching static assets from origin server, users can fetch cached copies of files from CDN more quickly
+
+Some of the popular CDNs:
+
+1) Cloudflare CDN
+2) AWS Cloud Front
+3) GCP Cloud CDN
+4) Azure CDN
+5) Oracle CDN
+
+Every CDN has its own local cache and they should all be in sync. There are two ways to populate a CDN Cache
+
+1) Push - It would be the responsibility of Engineering to push new assets to CDN
+2) Pull - Server cache is lazily updated. First hit is always a miss.
+
+A Pull method is usually recommended. However there are few challenges that we run into with Pull CDN.
+
+1) Stale assets can be returned as CDN doesn't know  if an asset is updated
+
+So to mitigate this :
+
+1) Associate a time stamp to the asset
+2) or use Cache-Control headers. So browser based on these header MAX-AGE{Amount of time it takes for a cache copy to expire} sends another request to the server
+3) Another approach is Cache busting. You cache assets with a hash or e-tag {is unique compared to previous versions}
+
 Examples of CDN: Cloud flare
 1) Why are CDN required ?
 For serving static content like images , html files and videos
