@@ -29,7 +29,8 @@ Load balancer is called Reverse Proxy because it acts as a proxy server between 
 
 Similarly a proxy for Client is known as a Forward Proxy. 
 
-Key terms:
+Key terms:![Screen Shot 2022-05-03 at 4 13 41 PM](https://user-images.githubusercontent.com/7702406/166587870-e4a84963-3f0d-4844-b5b0-201a4613ba79.png)
+
 1) VIP — Virtual IP
 2) VS — Virtual Servers
 3) RS — Real Servers
@@ -147,11 +148,14 @@ Some of the popular CDNs:
 Every CDN has its own local cache and they should all be in sync. There are two ways to populate a CDN Cache
 
 1) Push - It would be the responsibility of Engineering to push new assets to CDN
-2) Pull - Server cache is lazily updated. First hit is always a miss.
-
+![Screen Shot 2022-05-03 at 4 09 52 PM](https://user-images.githubusercontent.com/7702406/166587505-73dc29fc-da75-4549-9a9c-f4b08f427839.png)
+3) Pull - Server cache is lazily updated. First hit is always a miss.
+![Screen Shot 2022-05-03 at 4 14 10 PM](https://user-images.githubusercontent.com/7702406/166587902-88fe7faf-c15d-4043-8a1d-ad732a21692d.png)
 A Pull method is usually recommended. However there are few challenges that we run into with Pull CDN.
 
+
 1) Stale assets can be returned as CDN doesn't know  if an asset is updated
+
 
 So to mitigate this :
 
