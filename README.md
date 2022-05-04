@@ -19,6 +19,8 @@ Suppose the record doesn't exists. Then the DNS client queries the local DNS Ser
 
 ![Screen Shot 2022-04-28 at 7 35 10 AM](https://user-images.githubusercontent.com/7702406/165776998-f824b2bf-7b7e-4444-84ba-44ff55dd358e.png)
 
+**What the heck is Socket? Connection ? Http ? Https ? rpc ? Rest?**
+
 _**How does a Load balance work:**_
 
 What is a load balancer?
