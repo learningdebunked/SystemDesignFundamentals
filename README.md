@@ -190,8 +190,18 @@ API Gateway:
 **What is Consistent Hashing?
 What is consistent hashing with Vnodes?**
 
-What is CAP Theorem?
-What is PACELC Theorem?
+**What is CAP Theorem?
+What is PACELC Theorem?**
+
+**Microservices and patterns.**
+1) What is side car pattern? What are the other patterns ? Why is sidecar famous?
+2) What is istio ?
+3) What is service mesh? How is it implemented? What are the advantages it provides?
+4) How distributed transactions work in MicroServices architecture?
+5) What is 2PC?
+6) What is 3PC?
+7) What is SAGA? 
+8) When to use 2PC vs 3 PC vs Saga ? What are the advantages and disadvantages?
 
 
 
