@@ -187,3 +187,13 @@ API Gateway:
 
 ![Screen Shot 2022-05-03 at 4 31 56 PM](https://user-images.githubusercontent.com/7702406/166590748-e9ef4f72-176b-4979-b7e0-4ff934019ed2.png)
 
+**What is Consistent Hashing?
+What is consistent hashing with Vnodes?**
+
+What is CAP Theorem?
+What is PACELC Theorem?
+
+
+
+
+
