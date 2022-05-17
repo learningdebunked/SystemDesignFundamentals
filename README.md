@@ -294,10 +294,10 @@ In a Consistent Hashing with Virtual nodes the each Physical node  will get a sm
 Practically , Vnodes are randomly distributed across the cluster and are generally non-contiguous so that no two neighboring Vnodes are assigned to the same physical node or rack
 
 Additionally for data replication , each node contains replicas of data from other nodes. 
-**What is CAP Theorem?
-What is PACELC Theorem?**
+
 
 **Microservices and patterns.**
+
 1) What is side car pattern? What are the other patterns ? Why is sidecar famous?
 2) What is istio ?
 3) What is service mesh? How is it implemented? What are the advantages it provides?
@@ -309,5 +309,6 @@ What is PACELC Theorem?**
 
 
 
-
+**What is CAP Theorem?
+What is PACELC Theorem?**
 
