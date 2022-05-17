@@ -241,6 +241,36 @@ The disadvantages could be :
 **What is Consistent Hashing?
 What is consistent hashing with Vnodes?**
 
+In Data paritioning how do we know which node has a particular piece of  data or otherwise which node should be store the Data ?
+
+A basic approach will be to use a suitable hash function to map the key of the data to a number. Then find the server by applying modulo on this number and the total number of servers
+
+Ex: say the key to the Data is "California"
+say we compute hash(key) = hash (California) = 16
+Now 16%{Number of servers} will give the server ID on to which we must store the data.
+Extending the example say we have 5 servers , 16%5 = 1 , that means the Key California should be stored on Server with ID 1.
+
+The disadvantage of this approach is that 
+
+a) Adding and removing servers means all our existing mappings will be broken and so we have to remap all the keys each time servers are added or removed
+
+So the way to solve this is Consistent Hashing
+
+Consistent hashing is the technique to distribute requests/ data efficiently across servers.
+
+Real world systems using Consistent Hashing:
+1) Discord chat application
+2) Akamai CDN
+3) Data partitioning across the clusters in Apache cassandra
+4) Partitioning component of Amazon's Dynamo DB
+
+With Consistent Hashing only a small set of keys move when the servers are added or removed.
+
+Consistent hashing stores the data managed by a distributed system in a ring. Each node in the ring is assigned a range of Data.
+
+
+
+
 **What is CAP Theorem?
 What is PACELC Theorem?**
 
