@@ -266,11 +266,34 @@ Real world systems using Consistent Hashing:
 
 With Consistent Hashing only a small set of keys move when the servers are added or removed.
 
-Consistent hashing stores the data managed by a distributed system in a ring. Each node in the ring is assigned a range of Data.
+Consistent hashing stores the data managed by a distributed system in a ring. Each node in the ring is assigned a range of Data ( token ).
 
+This schema works well when a node is added or removed. We just have to rebalance data on the node that is removed and move that to the next node , while adding node we have to rebalance the range.
 
+However this scheme can lead to non uniform distribution of the keys and so thus can be solved using an extension named Virtual nodes
 
+![Screen Shot 2022-05-17 at 10 19 04 AM](https://user-images.githubusercontent.com/7702406/168872912-326966af-8fe9-4c80-aa25-0605adfb8d42.png)
 
+**What is Consistent Hashing with Virtual nodes?**
+
+Instead of assigning a single token to a node the hash range is divided into multiple smaller ranges and each Physical node is given several of these ranges
+
+<img width="843" alt="Screen Shot 2022-05-17 at 10 39 21 AM" src="https://user-images.githubusercontent.com/7702406/168876133-0edee5fe-c077-474c-95bf-5ebc10a2205d.png">
+
+Example: Consider the above distribution where we 
+
+Server 1 :With range 0-25  
+Server 2: With range 26-5  
+Server 3: With Range 51-75  
+Server 4: With Range 76-100  
+
+In a Consistent Hashing with Virtual nodes the each Physical node  will get a smaller range as in the image below
+
+<img width="843" alt="Screen Shot 2022-05-17 at 10 43 50 AM" src="https://user-images.githubusercontent.com/7702406/168876897-ae2382b9-4564-45f4-8d5e-d311fd547ddd.png">
+
+Practically , Vnodes are randomly distributed across the cluster and are generally non-contiguous so that no two neighboring Vnodes are assigned to the same physical node or rack
+
+Additionally for data replication , each node contains replicas of data from other nodes. 
 **What is CAP Theorem?
 What is PACELC Theorem?**
 
