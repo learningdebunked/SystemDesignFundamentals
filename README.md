@@ -347,8 +347,32 @@ API Gateway can also be used for:
 5) Chaos moneky testing
 6) A/B Testing i.e.  Traffic split Ex: 70% to one deployment and 30% to another deployment
 
-Service Discovery: How does the API Gateway redirect?
+**Service Discovery: How does the API Gateway redirect?**
+So the question is how does one microservice connect to another microservice or how does API Gateway redirect requests from client to any instance of a microservice
 
+The pattern used to solve this problem  is called **Service Discovery** which relies on **Service Registry**. The Service Registry maintains a list of all microservices and their Network addresses
+
+Ex: Eureka 
+
+**Service Registry** : Its a store containing a list of services , ip addresses with ports
+
+How does Service registry get latest address of any service?
+
+1) Self Registry - Any new service or service instnaces registers to Service Registry
+2) 3rd Party - Service registry makes a call to the 3rd party and asks for new services or new instances for existing services. Service registry listens to new services on cluster and asks for the network addresses and saves the addresses
+
+//TODO Add a diagram and dig deep on Service Registry
+
+How ever there is a disadvantage as well when a client makes a call to Service registry directly , the client will have to Load balance between the multiple instances of a service as returned by Service Registry so we move to **Server side discovery** . Look at the below diagram
+
+![Screen Shot 2022-05-25 at 5 56 04 AM](https://user-images.githubusercontent.com/7702406/170267006-bc37430b-0065-4009-8390-926b261fb2e9.png)
+
+**Inter service communication**
+1) Http or RPC ( remote procedure calls)
+2) Synchronous or Asynchronous calls
+
+|  Synchronous         | Advantages       | Disdvantages  
+--------------------| -------------  | ------------       
 
 1) What is side car pattern? What are the other patterns ? Why is sidecar famous?
 2) What is istio ?
