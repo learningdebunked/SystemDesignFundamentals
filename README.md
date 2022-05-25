@@ -374,7 +374,7 @@ How ever there is a disadvantage as well when a client makes a call to Service r
 |  Synchronous         | Advantages       | Disdvantages  
 --------------------| -------------  | ------------       
 |1| Easy to implement |Service Availability can lead to break of functionality
-|2|                    | Real time  responses | Response times are dependent on dependent services
+|2| Real time  responses | Response times are dependent on dependent services
                      
          
 |  ASynchronous         | Advantages       | Disdvantages  
@@ -383,7 +383,42 @@ How ever there is a disadvantage as well when a client makes a call to Service r
 |2| Decoupled        | Adds to process latency
 |3|No need for service discovery | Monitoring costs 
 |4|Works even when services are down | Error reproducibility is hard
-                     
+
+**Ciruit breaker**
+I've used Hystrix as ciruit breaker in my projects
+
+Code snippet:
+@Hystrix Command
+(fallback Method = "<name of the fallback method in case of error >" , commandKey= "< name of the method that can fail>")
+ 
+**Features supported by circuit breaker:**
+1) Returns a cache response before the service was running
+2) Redirect to another call that is a fall back service in case of error. This is called Fall back mechanism
+3) Lets the service under failure hearl. For subsequent requests the circuit breaker directly calls the fall back instead of calling the service that is failing
+ 
+**State diagram of circuit breaker:**
+ ![Screen Shot 2022-05-25 at 6 21 30 AM](https://user-images.githubusercontent.com/7702406/170272019-63a8cf04-b6fa-4318-a436-b1869fb6f0cf.png)
+ 
+** Service Mesh**
+ 
+ Why do we need Service Mesh. Let's look at how microservices would interact without a Service Mesh
+ 
+ ![Screen Shot 2022-05-25 at 7 09 27 AM](https://user-images.githubusercontent.com/7702406/170282429-f8286703-6d4c-420d-a2e7-062db85f5b73.png)
+ 
+ If Service 1 is calling 2 and since there are multiple instances of 2 , a lookup in SR happens and then 1 needs to loadbalance and so basically this is beyond the boundaries of reponsibility for 1. Also stuff like retry & circuit breaker logic doesn't necessarily are responsibilities of 1 .
+ 2) Similary 2 is calling 3 and 4 so it has to repeat the circuit breaker logic and retry logic 
+ 3) So the challenge is that 1 and 2 have to handled within every microservice
+ 4) The solution is to have a **Service Mesh**
+
+ Service mesh is a component that runs with every microservice. For every instance of microservice service mesh runs in parallel and the service mesh runs for any of the microservices that are live. The Service Mesh also has metrics server to deal with Service metrics. With Service mesh the caller avoids service discovery and loadbalancing 
+ 
+ A Service mesh has 2 components:
+ 
+ 1) Control plane - This is where we configure proxies that are side loaded with every microservice
+ 2) Data plane - Has a group of proxies that don't have knowledge of other proxies in the cluster. All requests go through proxies in Data plane
+ 
+ This pattern is called as the **Side Car Pattern**
+ 
 1) What is side car pattern? What are the other patterns ? Why is sidecar famous?
 2) What is istio ?
 3) What is service mesh? How is it implemented? What are the advantages it provides?
