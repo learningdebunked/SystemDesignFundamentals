@@ -298,6 +298,58 @@ Additionally for data replication , each node contains replicas of data from oth
 
 **Microservices and patterns.**
 
+Ways to break Monolith into Microservices 
+
+1) Functional decomposition i.e. Decomposition based on functional areas
+
+Advantages of decomposition :
+
+1) We get the ability to use the right tool for the right process and support polyglot persistance
+2) Easy to scale
+3) Easy to deploy
+4) loose coupling - changing one part of the code doesn't affect others
+5) Faster to develope and understand
+6) High Availability
+
+Disadvantages:
+1) Inter process communication
+2) Distributed transactions ( 2 phase commit or SAGA)
+3) More resources
+4) Debugging issues
+
+How to scale microservices?
+Its called SCALE CUBE.  
+
+The 3 dimensions are:
+1) Functional decomposition
+2) Horizontal scaling
+3) Data partitioning
+
+Vertical scaling can also be an option however there is a hard end to the computing power and cost rise is exponential
+
+What role does API Gateway play in Microservices?
+
+Without introducing Gateway will lead to change in client code which is not desirable. Refer to section API Gateway
+
+Advantages:
+
+1) Authentication
+2) SSL Termination i.e. Converting Https calls to Http for faster communication. Https can be at gateway layer & all internal service calls can be Http. Thus SSL can be terminated
+3) LB
+4) Insulation
+
+API Gateway can also be used for:
+
+1) Caching
+2) Managing access quotas
+3) API Health monitoring
+4) API Versioning
+5) Chaos moneky testing
+6) A/B Testing i.e.  Traffic split Ex: 70% to one deployment and 30% to another deployment
+
+Service Discovery: How does the API Gateway redirect?
+
+
 1) What is side car pattern? What are the other patterns ? Why is sidecar famous?
 2) What is istio ?
 3) What is service mesh? How is it implemented? What are the advantages it provides?
