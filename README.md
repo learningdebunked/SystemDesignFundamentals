@@ -495,6 +495,7 @@ Code snippet:
  SEC can be a standalone component ( in most scenarios it is ) or a part of existing microservice
  
  **SAGA Orchestration pattern:**
+
  This is ideal for scenarios where you 've already built your microservices and now want to create a process flow.
  There would be a orchestrator to manage the entire operation from one cdenter. An orchestrator receives a start command from source and commences calling  
  related services sequentially.  After each succesful response it makes the next call to another service. If one of the steps fails and service returns a 
