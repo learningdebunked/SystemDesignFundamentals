@@ -461,9 +461,18 @@ Code snippet:
 **Distributed transactions in Microservices:**
  
  1) 2PC ( 2PHASE commit) : 2 Phases are a) Prepare and b) Commit
- 2) 3 PC ( 3 Phase commit)
+ This leads to a strongly consistent model however is synchronous in nateure and increases latency
+ 2) 3 PC ( 3 Phase commit) - Similar to 2 Phase but has another additional phase called pre-commit
  3) TC/C 
  4) Saga
         1) Choreography - Event based , async communication , every transaction has a compensating transaction to roll back
         2) Orchestration - When we are building process flow around existing services
+ SAGA is useful to handle business errors like credit card violation but cannot be used to handle technical errors based on the non-deterministic nature of the system. Good way is to implement a technical layer that guarantees that updates sent to it will be eventually complete. This is done by SAGA execution coordinator
  
+ SAGA Choreography pattern : Every operation that is part of the SAGA can be rolled back by a compensating action.
+ Transactions in microservices are BASE ( Basically available soft state and eventually consistent ). Compensating actions must be taken to revert anything that occured as part of the transaction. The following are the frameworks to implement SAGA Choreography
+
+ 1) Eclipse Microprofile LRA
+ 2) Eventual Tram Saga
+ 3) AXON Saga  {Spring boot + Axon is a popular choice}
+ 4) Seata ( this is used by alibaba)
