@@ -373,7 +373,10 @@ How ever there is a disadvantage as well when a client makes a call to Service r
 
 |  Synchronous         | Advantages       | Disdvantages  
 --------------------| -------------  | ------------       
-
+                     | Easy to implement | Service Availability can lead to break of functionality
+                     | Real time | Response times are dependent on dependent services
+                     
+                     
 1) What is side car pattern? What are the other patterns ? Why is sidecar famous?
 2) What is istio ?
 3) What is service mesh? How is it implemented? What are the advantages it provides?
