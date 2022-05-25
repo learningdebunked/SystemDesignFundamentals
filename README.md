@@ -419,6 +419,47 @@ Code snippet:
  
  This pattern is called as the **Side Car Pattern**
  
+ ISTIO is a Service Mesh 
+ 
+ **Microservices deployment**
+ 
+ Goals of deployment:
+ 
+ 1) Scalability and throughput
+ 2) Reliable and available
+ 3) Isolation ( one service doesn't pull the entire system down)
+ 4) Monitoring
+ 5) Cost Effective
+ 
+ Way to deploy:
+ 
+ 1) Multiple services per host 
+           a) this is a very traditional approach
+           b) The disadvantage is that we share resources
+ 2) Service per vm per container : This is a widely adoped technique
+           a) Isolation and security
+           b) FAST
+           c) Autoscaling can achieved through  Kubernetes or Dockerswarm container orchestration techniques
+ 3) Serverless - No need to worry about Service Registry , API Gateway . We just develope code 
+            ex: Aws Lambda , Google cloud function.
+    We just get into console and paste your code , the API will be up and running
+    There are both advantages and disadvantages to this approach.
+    
+  Advantages of using Lambda or Cloud functions:
+    1) Focus only on code and business
+    2) No worries about scaling
+    3) Pay as you go
+ 
+  Disadvantages:
+ 
+    1) Run time support , not all run time environments are available
+    2) Expensive
+    3) Vendor lockin 
+    4) Debugging
+    5) Stateless and short running process only
+ 
+**Distributed transactions in Microservices:**
+ 
 1) What is side car pattern? What are the other patterns ? Why is sidecar famous?
 2) What is istio ?
 3) What is service mesh? How is it implemented? What are the advantages it provides?
