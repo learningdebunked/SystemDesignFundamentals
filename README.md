@@ -465,14 +465,44 @@ Code snippet:
  2) 3 PC ( 3 Phase commit) - Similar to 2 Phase but has another additional phase called pre-commit
  3) TC/C 
  4) Saga
-        1) Choreography - Event based , async communication , every transaction has a compensating transaction to roll back
-        2) Orchestration - When we are building process flow around existing services
- SAGA is useful to handle business errors like credit card violation but cannot be used to handle technical errors based on the non-deterministic nature of the system. Good way is to implement a technical layer that guarantees that updates sent to it will be eventually complete. This is done by SAGA execution coordinator
+        a) Choreography - Event based , async communication , every transaction has a compensating transaction to roll back
+        b) Orchestration - When we are building process flow around existing services
+
+ SAGA is useful to handle business errors like credit card violation but cannot be used to handle technical errors based on the non-deterministic nature 
+ of the system. Good way is to implement a technical layer that guarantees that updates sent to it will be eventually complete. This is done by SAGA 
+ execution coordinator
  
- SAGA Choreography pattern : Every operation that is part of the SAGA can be rolled back by a compensating action.
- Transactions in microservices are BASE ( Basically available soft state and eventually consistent ). Compensating actions must be taken to revert anything that occured as part of the transaction. The following are the frameworks to implement SAGA Choreography
+ SAGA Choreography pattern :  There are no http calls at all.
+ Every operation that is part of the SAGA can be rolled back by a compensating action.
+ Transactions in microservices are BASE ( Basically available soft state and eventually consistent ). Compensating actions must be taken to revert   
+ anything that occured as part of the transaction. The following are the frameworks to implement SAGA Choreography
+ 
+ As we can see in the below picture there are no http calls in the SAGA choreography flow
+![Screen Shot 2022-05-25 at 2 46 42 PM](https://user-images.githubusercontent.com/7702406/170372753-3dab1572-343c-460c-8e60-ba79fdd0860e.png)
 
  1) Eclipse Microprofile LRA
  2) Eventual Tram Saga
  3) AXON Saga  {Spring boot + Axon is a popular choice}
  4) Seata ( this is used by alibaba)
+ 
+ SAGA Execution Coordinator (SEC):
+ This is a core component for implementing a successful SAGA flow. Maintains a SAGA log that contains a sequence of events of a particular flow
+ This component maintains a SAGA log that contains sequence of events of a particular flow. IF a failure occures the SEC queries the logs and helps identify which components are impacted and in which sequence the compensating transactions must be executed. SEC Helps maintain a **eventually consistent state**
+![Screen Shot 2022-05-25 at 2 56 40 PM](https://user-images.githubusercontent.com/7702406/170374017-d7296519-a972-4182-9211-86606c5bcf50.png)
+
+ If SEC itself fails it can read logs to identifyw hich of the components are succesfully rolledback , identify which ones are pending and start calling them in reverse chronological order to roll back
+ 
+ SEC can be a standalone component ( in most scenarios it is ) or a part of existing microservice
+ 
+ **SAGA Orchestration pattern:**
+ This is ideal for scenarios where you 've already built your microservices and now want to create a process flow.
+ There would be a orchestrator to manage the entire operation from one cdenter. An orchestrator receives a start command from source and commences calling  
+ related services sequentially.  After each succesful response it makes the next call to another service. If one of the steps fails and service returns a 
+ failure message , the orchestrator makes roll back calls for previous step
+ 
+ Some of the popular frameworks:
+ 1) Camunda
+ 2) Apache camel : I've used this in my projects. Basically a series of actions in camel route that should be either completed successfully or not 
+    executed and compensated
+ 3) IBM App coonnect
+ 
