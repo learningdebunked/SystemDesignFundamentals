@@ -507,3 +507,6 @@ Code snippet:
     executed and compensated
  3) IBM App coonnect
  
+SAGA ORCHESTRATOR VS CHOREOGRAPHY:
+ If we are building new products and building new services , use Choreography for event based transaction.
+ If we are creating a process around existing set of miscroservices use Orchestrator
