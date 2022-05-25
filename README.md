@@ -399,7 +399,7 @@ Code snippet:
 **State diagram of circuit breaker:**
  ![Screen Shot 2022-05-25 at 6 21 30 AM](https://user-images.githubusercontent.com/7702406/170272019-63a8cf04-b6fa-4318-a436-b1869fb6f0cf.png)
  
-** Service Mesh**
+****Service Mesh****
  
  Why do we need Service Mesh. Let's look at how microservices would interact without a Service Mesh
  
