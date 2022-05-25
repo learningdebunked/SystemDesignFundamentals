@@ -374,8 +374,15 @@ How ever there is a disadvantage as well when a client makes a call to Service r
 |  Synchronous         | Advantages       | Disdvantages  
 --------------------| -------------  | ------------       
 |1| Easy to implement |Service Availability can lead to break of functionality
-|2|                    | Real time | Response times are dependent on dependent services
+|2|                    | Real time  responses | Response times are dependent on dependent services
                      
+         
+|  ASynchronous         | Advantages       | Disdvantages  
+--------------------| -------------  | ------------       
+|1| Faster APIs | Complex Design
+|2| Decoupled        | Adds to process latency
+|3|No need for service discovery | Monitoring costs 
+|4|Works even when services are down | Error reproducibility is hard
                      
 1) What is side car pattern? What are the other patterns ? Why is sidecar famous?
 2) What is istio ?
