@@ -6,7 +6,15 @@ Systems that can anticipate faults and cope up are known as Resilient systems
 
 **Scalability:**
 
-**Maintainability:**
+**Maintainability:** 
+3 aspects of Maintainability
+1) Operability : Make it easy for operations
+2) Simplicity: Make it easy for new engineers to onboard and understand
+3) Evolvability: Make it easy for code changes i.e. modifiability , plasticity and extensibility
+
+**Elastic:**
+Some systems are Elastic meaning that they can automatically add computing resources when they detect a load, where as other systems are scaled manually
+
 
 **Http vs Http(s)**
 
@@ -521,3 +529,39 @@ Code snippet:
 SAGA ORCHESTRATOR VS CHOREOGRAPHY:
  If we are building new products and building new services , use Choreography for event based transaction.
  If we are creating a process around existing set of miscroservices use Orchestrator
+ 
+ **Database concepts:**
+ 
+1) _Polyglot persistence_: Relational daabases will continue to be used alongside a broad variety of non-relational data stores and this is known as  
+2) _Query optimizer_: In a relation database the query optimizer automatically decides which parts of teh query to execute in which order and which   
+    indices  to use.
+ 
+ If you want to query data in new ways you can declare a new index and queries will automatically use which ever indexes are most appropriate .
+ 
+ //TODO Try creating a new index and how Db Engine handles it
+ 
+ How does indexing work?
+ 
+In simple terminology, an index maps search keys to corresponding data on disk by using different in-memory & on-disk data structures. Index is used to quicken the search by reducing the number of records to search for.
+ 
+ How to determine the db engine?
+ 
+ SHOW TABLE STATUS WHERE name = '<table name>' \G;
+ 
+ show index from <table_name>; -- lists all indices in a given table
+ 
+ EXPLAIN SELECT * FROM  <table_name> WHERE <column_name>='<some_guid>'; -- Explains the way query is executed
+ 
+ 
+ EXPLAIN shows how the query engine plans to execute the query. 
+ 
+ The screen shot below shows all the columns that are returned
+
+ ![Screen Shot 2022-06-28 at 11 16 51 AM](https://user-images.githubusercontent.com/7702406/176254087-eb98d9b6-d53d-4320-ab92-c5d1b8e297ae.png)
+ 
+ possible_keys: represents what all available indices are there which can be used in this query
+ key: represents which index is actually going to be used out of all possible indices in this query.
+ rows: column indicates the number of rows MySQL believes it must examine to execute the query. For InnoDB tables, this number is an estimate, and may  
+ not always be exact.
+ filtered: indicates an estimated percentage of table rows that are filtered by the table condition.
+ 
