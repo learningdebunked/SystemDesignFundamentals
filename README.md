@@ -1,5 +1,13 @@
 # System Design Fundamentals
 
+**Reliability:**
+The system should continue to work at desired level of performance even in the face of adversity ( both H/w and S/W faults { Things that can go wrong})
+Systems that can anticipate faults and cope up are known as Resilient systems
+
+**Scalability:**
+
+**Maintainability:**
+
 **Http vs Http(s)**
 
 **What is a socket ? what is a connection ?**
