@@ -532,6 +532,52 @@ SAGA ORCHESTRATOR VS CHOREOGRAPHY:
  
  **Database concepts:**
  
+Data model types:
+
+1) Relational model - The query optimizer automatically decides which parts of the query to execute and in which order , along with indexes to use. 
+   If we want to query data in new ways , you can declare a new index and queries will automatically use the most appropriate indexes
+   
+   For relational models , schema changes have a bad reputation of being slow and requiring down time.
+   Relationships are handled  through Foreign keys.
+   
+   For highly interconnected data , the relational models are ok
+   
+   MySQL copies the entire table on Alter command which can mean minutes or hours of down time.
+   
+   Similarly running update statement on a large table is likely to be slow on any database since every row that matches criterion needs to be rewritten.
+   
+2) Document model - Support for joins is often weak. DB doesn't support a join. Relationships are handled through Document references. Use this model if data in the application has document like structure. 
+
+For highly interconnected data the document model is awkward.
+
+If you're application has mostly one-to-many relationships or no relationships between records , the document model is appropriate? //TODO Why
+
+3) Graph model
+
+For highly interconnected data graphy models are most natural
+
+Graph has two objects: Vertices and Edges
+
+Graphs are not limited to homogeneous data. This provides a consistent way of storing completely diff types of objects in a single data store. Ex: Facebook
+
+There are two types of Graph models:
+a) Property graph models - Cypher is a declarative query language for property graphs created for Neo4j
+b) Triple store model - SPARQL , query language for triple stores using RDF data model
+
+
+
+Graphs are good for evolvability as we add features to application . A graph can be extended easily to accomodate changes in applications data structure.
+
+Schema on read : Structure of data is implicit and interepreted when data is read . This is similar to dynamic ( run time) checking in programming language
+
+Schema on write: The traditional approach of relational databases where the schema is explicit and the database ensures all written data connects to it. This is similar to static (compile time )type checking
+
+What is impedence mismatch? 
+Disconnect between the models i.e application code and database model of tables rows and columns
+
+What is Normalization?
+Removing duplication is the key idea behind normalization
+ 
 1) _Polyglot persistence_: Relational daabases will continue to be used alongside a broad variety of non-relational data stores and this is known as  
 2) _Query optimizer_: In a relation database the query optimizer automatically decides which parts of teh query to execute in which order and which   
     indices  to use.
@@ -565,3 +611,30 @@ In simple terminology, an index maps search keys to corresponding data on disk b
  not always be exact.
  filtered: indicates an estimated percentage of table rows that are filtered by the table condition.
  
+ WAL Vs SSTables VS LSM{Log structured merged} Trees:
+ 
+ SSTables ( Sorted String Tables):
+ ** Key value pairs is sorted by Key
+ ** Each key only appears once within each merged segment file
+ 
+ For Hash indexes , the data structure is Hash Map
+ For SST - Red black trees or AVL Trees.  With these Tree data structures you can insert keys in any order and read them back in sorted order
+ 
+ Cassandra and HBase use LSM out of SST. To avoid data loss in the event of a crash. Since the most recent writes to mem table are not yet written to disk are lost , we keep a separate log on disk to which every write is immediately appended.
+ 
+ Lucene an indexing engine used by Elastic search and Solr uses a similar method. SST is used and merging happens in the back ground as needed
+ 
+ LSM ( Log structured merge trees ) indexes are gaining acceptance. LSM Tree can support remarkably high write throughput.
+ 
+ LSM can be slow when looking up for keys that donot exist in db. The db engines use a concept called Bloom Filters. Bloom filter is a memory efficient data structure for approximating the contents of a set. This can tell you if a key doesn't appear in the database and thus save many unnecessary disk reads.
+ 
+ B-Trees:
+ ** B-Trees are most widely used indexing structure
+ ** This is a standard index implementation in almost all relational databases and many non-relational databases use them too
+ ** Like SST Tables B-Trees keep key value pairs sorted by key which allowes efficient key value lookups and range queries
+ ** B-Trees break the database down into fixed size blocks or pages. Traditionally 4KB in size and read or write one page at a time
+ ** Each page can be identified using an address or location which allows one page to refer to another.
+ ** Most databases can fit into a B-Tree that is 3 or 4 levels deep so you don't need to follow many page references to find the pages you are looking
+ ** A 4 Level tree of 4KB pages with branching factor of 500 can store up to 256TB
+ ** LSM Never modifies in place  but a B-Tree index updates are modified in place
+ ** 
