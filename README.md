@@ -705,6 +705,7 @@ In simple terminology, an index maps search keys to corresponding data on disk b
     2) Choose DB Engine i.e OLTP ( B Tree vs LSM vs SST vs In Memory)  vs OLAP 
  
  **OLAP**
+ 
     1) STAR Schema or Dimensional modelling. In this event is at the center
     2) Snow flake schema , Dimensions are further broken down into sub dimensions
     3) Snow flake schemas are more normalized than STAR Schemas. STAR schemas are more preferred because they are simpler for analysts to work
