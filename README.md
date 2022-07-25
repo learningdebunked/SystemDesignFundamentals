@@ -710,5 +710,24 @@ In simple terminology, an index maps search keys to corresponding data on disk b
     2) Snow flake schema , Dimensions are further broken down into sub dimensions
     3) Snow flake schemas are more normalized than STAR Schemas. STAR schemas are more preferred because they are simpler for analysts to work
  
+ **Materialized View**
+ 
+    ** Snapshot
+    ** A special case{A grid of aggregates grouped by different dimensions} is data cube or OLAP cube
+    **  Most data warehouses use aggregates such as data cubes only as a performance boost for certain queries
+ 
+ **Encoding and Evolution**
+ 
+   ** Several formats for encoding data JSON,XML, Protocol buffers , Thrift and AVRO
+   ** Translations of data in memory to sending it over Network is known as Encoding. Decoding is the reverse of encoding
+   ** Various languages support libraries that come with built in support for encoding in-memory objects into byte sequence
+   ** JSON , XML and CSV are  data interchange formats
+ 
+      **Binary Encoding**
+        
+        ** This is used for more compaction and to process data fast
+        ** When this encoding is used on smaller data sets the gains are negligible but if the data size is in TB , the choice of data format will have a 
+           big impact
+ 
  
  
