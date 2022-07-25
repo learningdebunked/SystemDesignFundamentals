@@ -564,6 +564,14 @@ There are two types of Graph models:
 a) Property graph models - Cypher is a declarative query language for property graphs created for Neo4j
 b) Triple store model - SPARQL , query language for triple stores using RDF data model
 
+ 
+4) Column oriented storage
+ 
+    a) Idea is that don't store all the values from one row together but store all the values from each column together
+    b) The way it works is that to reassemble entire row , you can take the entry from each of the individual column files and put them together to form  
+       the row in a table
+    c) Another advantage of column oriented  storage is that data can be compressed. Common compression is bit map encoding.
+ 
 In-Memory db: The performance gain of in-memory db is not due to the fact that data is not read from disk but because they can avoid the over heads of encoding in memory data structures in a form that can be writtern to disk
 
 Graphs are good for evolvability as we add features to application . A graph can be extended easily to accomodate changes in applications data structure.
@@ -695,3 +703,11 @@ In simple terminology, an index maps search keys to corresponding data on disk b
  
     1) Choose and understand the model
     2) Choose DB Engine i.e OLTP ( B Tree vs LSM vs SST vs In Memory)  vs OLAP 
+ 
+ **OLAP**
+    1) STAR Schema or Dimensional modelling. In this event is at the center
+    2) Snow flake schema , Dimensions are further broken down into sub dimensions
+    3) Snow flake schemas are more normalized than STAR Schemas. STAR schemas are more preferred because they are simpler for analysts to work
+ 
+ 
+ 
