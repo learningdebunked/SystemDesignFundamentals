@@ -564,7 +564,7 @@ There are two types of Graph models:
 a) Property graph models - Cypher is a declarative query language for property graphs created for Neo4j
 b) Triple store model - SPARQL , query language for triple stores using RDF data model
 
-
+In-Memory db: The performance gain of in-memory db is not due to the fact that data is not read from disk but because they can avoid the over heads of encoding in memory data structures in a form that can be writtern to disk
 
 Graphs are good for evolvability as we add features to application . A graph can be extended easily to accomodate changes in applications data structure.
 
@@ -680,9 +680,18 @@ In simple terminology, an index maps search keys to corresponding data on disk b
  
  **Concatenated Index**
  
-   ** Most common type of multi column index
-   ** Combines several fields into a key by appending one column to another
-   ** Multi dimensional indexes are a more general way of querying several columns at one , which is important for geo-spatial data
+    ** Most common type of multi column index
+    ** Combines several fields into a key by appending one column to another
+    ** Multi dimensional indexes are a more general way of querying several columns at one , which is important for geo-spatial data 
  
- **Fuzzy search or Full Text Search indexes**
+**Fuzzy search or Full Text Search indexes**
  
+    ** Search for similar key OR
+    ** Misspelled words OR 
+    ** The secondary indexes refer to the Primary key
+    ** Lucene is able to search text for word within a certain EDIT distance. EDIT distance of 1 means that one letter has been removed added or replaced 
+ 
+ **Summary in choosing databases**
+ 
+    1) Choose and understand the model
+    2) Choose DB Engine i.e OLTP ( B Tree vs LSM vs SST vs In Memory)  vs OLAP 
