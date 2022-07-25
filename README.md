@@ -628,7 +628,13 @@ In simple terminology, an index maps search keys to corresponding data on disk b
  
  LSM can be slow when looking up for keys that donot exist in db. The db engines use a concept called Bloom Filters. Bloom filter is a memory efficient data structure for approximating the contents of a set. This can tell you if a key doesn't appear in the database and thus save many unnecessary disk reads.
  
- B-Trees:
+ LSM Trees have low storage overhead especially when using levelled compaction
+ 
+ Downside of LSM is that disks have limited resource, so it can easily happen that a request needs to wait while disk finishes an expensive compaction operation. Hence the response times of queries to LSM storage engines can be some times quite high and unpredictable.
+ 
+ For LSM Engines if write throughput is high and compaction is not configured carefully , it can happen that compaction cannot keep pace with rate of incoming writes. In this case the number of unmerged segments on disk keep growing and they slow down the speed.
+ 
+ **B-Trees:**
    
      ** B-Trees are most widely used indexing structure 
      ** This is a standard index implementation in almost all relational databases and many non-relational databases use them too
@@ -645,7 +651,38 @@ In simple terminology, an index maps search keys to corresponding data on disk b
      ** B-Tree Optimizations: 
             ** Creating a copy on write schema
             ** Abbreviate keys
-    ** B-Tree variants such as fractal trees borrow some log structured ideas to reduce disk seeks
+     ** B-Tree variants such as fractal trees borrow some log structured ideas to reduce disk seeks
    
    
-   Rule of Thumb: LSM Trees are typicallt faster for writes where as B-Trees are thought to be faster for reads
+   _**Rule of Thumb**: LSM Trees are typicallt faster for writes where as B-Trees are thought to be faster for reads_
+
+**Secondary Index**
+ 
+    ** Secondary index is created as _create index_.
+    ** Several secondary indexes can be created
+    ** In secondary indexes keys are not unique unlike Primary indexes where keys are unique
+    **  Key in an index is the attribute that queries search for 
+    ** Value can be a) an actual row or b) reference to row stored else where . The place where rows are stored is known as Heap file and it stores data          in no particular order
+    ** When multiple secondary indexes are  present each index just references a location in the heap file and the actual data is kept in one place.
+  
+**Clustered Index**
+ 
+    ** Stores all row data within index
+    ** The PK of a table is always clustered index in MYSQL's Inno DB Storage Engine. 
+    ** The secondary indexes refer to the Primary key
+ 
+ **Covering Index**
+ 
+    ** Compromise between a clustered index and a non clustered index.
+    ** Stores some of the table's columns within the index. So indexes are to be created based on access and write pattern
+ 
+ Clustered and Covering indexes can speed up reads but they require additional storage and can add overhead on write. Also DB needs to enforce transactional guarantees when we use clustered index or covering index
+ 
+ **Concatenated Index**
+ 
+   ** Most common type of multi column index
+   ** Combines several fields into a key by appending one column to another
+   ** Multi dimensional indexes are a more general way of querying several columns at one , which is important for geo-spatial data
+ 
+ **Fuzzy search or Full Text Search indexes**
+ 
