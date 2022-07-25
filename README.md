@@ -629,12 +629,23 @@ In simple terminology, an index maps search keys to corresponding data on disk b
  LSM can be slow when looking up for keys that donot exist in db. The db engines use a concept called Bloom Filters. Bloom filter is a memory efficient data structure for approximating the contents of a set. This can tell you if a key doesn't appear in the database and thus save many unnecessary disk reads.
  
  B-Trees:
- ** B-Trees are most widely used indexing structure
- ** This is a standard index implementation in almost all relational databases and many non-relational databases use them too
- ** Like SST Tables B-Trees keep key value pairs sorted by key which allowes efficient key value lookups and range queries
- ** B-Trees break the database down into fixed size blocks or pages. Traditionally 4KB in size and read or write one page at a time
- ** Each page can be identified using an address or location which allows one page to refer to another.
- ** Most databases can fit into a B-Tree that is 3 or 4 levels deep so you don't need to follow many page references to find the pages you are looking
- ** A 4 Level tree of 4KB pages with branching factor of 500 can store up to 256TB
- ** LSM Never modifies in place  but a B-Tree index updates are modified in place
- ** 
+   
+     ** B-Trees are most widely used indexing structure 
+     ** This is a standard index implementation in almost all relational databases and many non-relational databases use them too
+     ** Like SST Tables B-Trees keep key value pairs sorted by key which allowes efficient key value lookups and range queries
+     ** B-Trees break the database down into fixed size blocks or pages. Traditionally 4KB in size and read or write one page at a time
+     ** Each page can be identified using an address or location which allows one page to refer to another.
+     ** Most databases can fit into a B-Tree that is 3 or 4 levels deep so you don't need to follow many page references to find the pages you are looking
+     ** A 4 Level tree of 4KB pages with branching factor of 500 can store up to 256TB
+     ** LSM Never modifies in place  but a B-Tree index updates are modified in place
+     ** To make B-Trees support DB that is crash proof it is common for B-Tree implementations to include an additional data structure on disk : a write  
+        ahead log  ( WAL). WAL is a append only file to which every B-Tree modification must be written before it can be applied to pages of the tree  
+        itself. when database comes back after crash , this log is used to restore the B-Tree back to consistent state.
+     ** For concurrency control latches ( light weight locks ) are applied
+     ** B-Tree Optimizations: 
+            ** Creating a copy on write schema
+            ** Abbreviate keys
+    ** B-Tree variants such as fractal trees borrow some log structured ideas to reduce disk seeks
+   
+   
+   Rule of Thumb: LSM Trees are typicallt faster for writes where as B-Trees are thought to be faster for reads
