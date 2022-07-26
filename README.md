@@ -8,10 +8,10 @@ Systems that can anticipate faults and cope up are known as Resilient systems
 
 **Maintainability:** 
 
-  3 aspects of Maintainability
-  1) Operability : Make it easy for operations
-  2) Simplicity: Make it easy for new engineers to onboard and understand
-  3) Evolvability: Make it easy for code changes i.e. modifiability , plasticity and extensibility
+   3 aspects of Maintainability
+   1) Operability : Make it easy for operations
+   2) Simplicity: Make it easy for new engineers to onboard and understand
+   3) Evolvability: Make it easy for code changes i.e. modifiability , plasticity and extensibility
 
 **Elastic:**
 Some systems are Elastic meaning that they can automatically add computing resources when they detect a load, where as other systems are scaled manually
