@@ -767,4 +767,17 @@ In simple terminology, an index maps search keys to corresponding data on disk b
          ** Binary - AVRO , Thrift and Protocol Buffer
  
  
- 
+ **Replication**
+   
+    ** Keeping copy of same data on multiple machines that are connected via network
+    ** Keep data geographically close to users
+    ** to serve more read queries
+    ** Three popular algorithms to replicate data : Almost all the distributed databases use on the models below
+       ** Single leader
+       ** Multi leader
+       ** Leaderless.
+   
+**Latency**
+      
+   ** If you've users around the world , you might want to have servers at various locations world wide so that each user can be served from a data center 
+      that is geographicall close to them. This avoid the users having to wait for N/W packets to travel halfway around the world
