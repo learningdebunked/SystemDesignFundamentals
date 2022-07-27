@@ -719,16 +719,52 @@ In simple terminology, an index maps search keys to corresponding data on disk b
  
  **Encoding and Evolution**
  
-   ** Several formats for encoding data JSON,XML, Protocol buffers , Thrift and AVRO
-   ** Translations of data in memory to sending it over Network is known as Encoding. Decoding is the reverse of encoding
-   ** Various languages support libraries that come with built in support for encoding in-memory objects into byte sequence
-   ** JSON , XML and CSV are  data interchange formats
+    ** Several formats for encoding data JSON,XML, Protocol buffers , Thrift and AVRO
+    ** Translations of data in memory to sending it over Network is known as Encoding. Decoding is the reverse of encoding
+    ** Various languages support libraries that come with built in support for encoding in-memory objects into byte sequence
+    ** JSON , XML and CSV are  data interchange formats
+    ** 
  
       **Binary Encoding**
         
         ** This is used for more compaction and to process data fast
         ** When this encoding is used on smaller data sets the gains are negligible but if the data size is in TB , the choice of data format will have a 
            big impact
+        ** Message Pack , BSON , BJSON , UBJSON , BISON are some binary encoding schemes
+        ** JSON is less verbose than XML but both still use a lot of space compared to binary formats.
+        ** When encoding understand if the gains are big enough and worth the loss of human readability
+        
+      ** Protocol Buffers
+      
+        ** Encoding scheme originally developed at Google.
+        ** Supports only one binary encoding format
+        
+      ** Thrift
+        
+        ** Encoding scheme originally developed at Facebook
+        ** Has 2 different encodigs a) Binary Protocol b ) Compact Protocol
+        
+      ** Both Thrift and Protocol buffer encoding schemes need a schema for any data that is encoded  
+      ** Both Thrift and Protocol buffer come with code generator tool that takes a schema definition and produces classes that implement the schema in 
+         various programming languages. The application then calls the generated code to encode or decode
+
+      **AVRO Encoding format**       
+         ** When using AVRO the binary data can only be decoded if the code reading the data is using the same exact schema as the code that wrote the 
+            data. Any mismatch in the schema between the reader and the writer would mean incorrectly decoded data
+         ** Key idea with AVRO is that writer's schema and reader's schema don't have to be the same, they have to be compatible
+         
+      **gRPC
+         ** The reason they are used is that custom RPC protocols with a binary encoding format can achieve better performance that something generic like 
+            JSON via REST 
+         ** The main focus of RPC Frameworks is on requests between services owned by same organization,typically within same datacenter
+         
+      **AKKA**
+         ** Rather than dealing with threads, logic is encapsulated in actors.
+         ** Is a programming model for concurrency in a single process
+         
+       **Summary**
+         ** Text Encoding formats - JSON / XML / CSV
+         ** Binary - AVRO , Thrift and Protocol Buffer
  
  
  
