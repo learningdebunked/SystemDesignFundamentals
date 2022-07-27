@@ -776,6 +776,42 @@ In simple terminology, an index maps search keys to corresponding data on disk b
        ** Single leader
        ** Multi leader
        ** Leaderless.
+    ** Configurations in DB for replication
+       ** Synchronous
+          ** The leader waits until the follower has confirmed that it receieved the write before reporting the success to the user and before making the 
+             writes are visible to other clients
+          ** For Synchrnous the advantage is that the follower is guaranteed to have an up-to-date copy of data that is consistent with leader
+          ** The disadvantage is that the leader must block all writes and wait until the synchronous replica is available again
+          ** Typical configuration in Production is semi synchronous i.e. one of the followers is synchronous and others are asynchronous.
+          **  In semi synchronous if a sync follower is slow async follower is made  synchronous
+   
+       ** Asynchronous
+         ** The leader sends the message but doesn't wait for a response from the follower
+         ** Replications is fast and under a second however if the following scenarios occur there could be a delay
+            ** if Recovering from failure
+            ** If the system is operating at capacity
+            ** If there are N/w problems
+       ** Handling failure replicas
+   
+    ** Leaderbased replication**   
+       ** Also known as master slave , active passive 
+       ** Every write to the database needs to be processed by every replica , otherwise the replicas would no longer contain the same data
+       ** Some databases that support leader based replication
+          ** Postgre SQL ( 9.0 and above) 
+          ** MySQL
+          ** Oracle Data Guard
+          ** Mongo DB
+       ** Leader based replication is not limited to Databases only , this scheme is used by message brokers like Kafka and RabbitMQ
+       ** Leader based replication is configured to be completely asynchronous , if leader fails any writes that have not yet been replicated fails. 
+          However the advantage is leader can continue processing writes . This is weak durability
+       ** Weak durability may be a bad trade off however async replication is widely used
+     
+   
+   
+![Screen Shot 2022-07-27 at 10 22 56 AM](https://user-images.githubusercontent.com/7702406/181310266-e52c3755-0bb7-45dd-a88c-26dedd5ebd54.png)
+
+   
+   
    
 **Latency**
       
