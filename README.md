@@ -960,6 +960,18 @@ In simple terminology, an index maps search keys to corresponding data on disk b
     ** Even though each record belongs to exactly one partition , it may still be stored on several nodes for fault tolerance
     ** A node may store more than one partition
     ** Each node may be a leader for some partitions and a follower for other partitions
+    ** If records are only ever accessed via the primary key, we determine the partition from the key and use it to route read and write requests to the          partition responsible for that key
+    ** Challenges with secondary indexes and partitoning
+       **  Usually doesn't identify a record uniquely but rather is a way of searching for occurances of a particular value
+       ** They don't map neatly to partitions
+       ** There are 2 approaches of partitioning a db with secondary indexes
+                  ** Document based partitioning : 
+                               ** Each partition is completely separate. Each partition maintains its own secondary indexes covering only 
+                                  documents in that partition. It doesn't care what does is stored in other partitions
+                               ** If you want to read we need to query all partitions. This can lead to tail latency amplification.
+                               ** Recommendation is to structure partition schemes so that secondary index queries can be served from single partition
+                        
+                  ** Term based partitioning : 
  
                                
   ![Screen Shot 2022-08-04 at 3 05 38 PM](https://user-images.githubusercontent.com/7702406/182960820-c9f80b82-fdfa-4e7c-9e2f-32317fde7217.png)
