@@ -913,7 +913,26 @@ In simple terminology, an index maps search keys to corresponding data on disk b
            ** Disadvantages with ALL-TO-ALL 
               ** Some n/w links may be faster than others so some replication messages may over take others , we use **version vectors** to solve the over 
                  taking problem
-           
+   
+    **Leaderless Replication**
+           ** Cassandra uses leaderless replication and this style is based on dynamo style db
+           ** In some leaderless implementations , the client directly sends its write to several replicas, in some others coordinator node does this on 
+              behalf of the clients
+           ** Similarly reads are also sent to multiple nodes / replicas. The client may get different responses from diff nodes i.e. Up to date values 
+              from one node and stale from another , version vectors are used to solve this conflict
+           ** Read repair : When client gets stale value from one of the replica it writes new values from other replica back to the replica with stale 
+              value , this approach works well for values that are frequently read
+           ** Anti entropy: Some data stories there is a background process that constantly looks for differences in data b/w replicas and copies any 
+              missing data from one replica to another. Without anti entropy, values that are rarely read may be missing from some replicas  and thus have 
+              reduced durability because read repair is performed only when a value is read by the application
+           ** Quorum:  Minimum number of votes required for a read / write to be valid. In Dynamo style db the parameters are typically configurable
+                     ** r+w <- n , this is possible configuration for high availability and low latency at reduced durability ( data could be stale). 
+                     ** Dynamo style databases are generally optimized for uses cases that can tolerate eventual consistency
+           ** Databases with leader less replication are best suited for use cases that require high availability and low latency and that can tolerate                 occasional stale reads                    
+           ** Sloppy quorums: This is a temporary fix while the n/w glitch is corrected. Clients can connect to some database nodes during n/w 
+                              interruption , not just to the nodes that are part of quorum such that reads/writes are accepted
+   
+   
 **Latency**
       
    ** If you've users around the world , you might want to have servers at various locations world wide so that each user can be served from a data center 
