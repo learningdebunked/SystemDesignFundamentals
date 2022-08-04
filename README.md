@@ -876,8 +876,44 @@ In simple terminology, an index maps search keys to corresponding data on disk b
      
      ** In leader based replication there is only one leader and all writes must go through it. If you cannot connect to leader you cannot write to the 
         database so a natural extension is multi leader replication Also known as MASTER-MASTER or ACTIVE-ACTIVE replication. 
-     ** In this each leader acts as simulataenously as a follower to other leaders   
+     ** In this each leader acts as simulataenously as a follower to other leaders  
+     ** In ACTIVE-ACTIVE / Multi Leader
+        ** You can have a leader in each datacenter.
+        ** Each data center's leader replicates its changes to leaders in other center
+        ** Within each Data center in this setup a regular leader-follower replication is used
+     ** Tools
+        ** Tungsten replicator for MySQL
+        ** Goldengate for Oracle
+        ** BDR for PostGRE SQL
+     ** Challenges with ACTIVE-ACTIVE
+        ** What if data is modified concurrently in both Data center's
+        ** Handling write conflicts
+            ** Know approaches
+               1) Each write has a uniqueID and pick the write with the highest ID as winner and throw away others. If Time stamp is used this technique 
+                  is known as **last write wins**
+               2) Give each replica a unique ID and let writes that originate at higher number replica win. Again this is dangerous for data loss
+               3) Record conflict in a data structure and write app code to resolve the conflict at some later time.
    
+        ** How to build a custom conflict resolution logic
+               a) ON WRITE: As db detects a conflict in log of replicated changes it calls a conflict handler
+               b) ON READ: when conflict is detected on READ , databases like CouchDB send multiple versions of data to application and application may 
+                  prompt the user to automatically resolve the conflict
+               c) Operational transformation is a conflict resolution algorithm behind Google docs and Etherpad
+   
+     ** Multi leader replication topologies
+           ** If you have two leaders, there is only one plausible topology i.e. leader 1 must send all writes to leader 2 and vice versa.
+           ** With more than 2 leaders various different topologies are possible
+               a) Circular
+               b) STAR
+               c) All-to-All topology
+           ** MySQL by default uses circular topology : Each node receives writes from another node and forwards those writes plus any of its own writes 
+              to next node
+           ** Most general topology is all to all i.e. every leader sends writes to every other leader
+           ** A problem wit Circular and STAR topologies is that if just one node fails it can interrupt the flow of replication messages
+           ** Disadvantages with ALL-TO-ALL 
+              ** Some n/w links may be faster than others so some replication messages may over take others , we use **version vectors** to solve the over 
+                 taking problem
+           
 **Latency**
       
    ** If you've users around the world , you might want to have servers at various locations world wide so that each user can be served from a data center 
