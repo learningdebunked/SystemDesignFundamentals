@@ -805,13 +805,78 @@ In simple terminology, an index maps search keys to corresponding data on disk b
        ** Leader based replication is configured to be completely asynchronous , if leader fails any writes that have not yet been replicated fails. 
           However the advantage is leader can continue processing writes . This is weak durability
        ** Weak durability may be a bad trade off however async replication is widely used
+       ** To add a new follower and to scale , we take a consistent snapshot of the leaders db and then copy the snapshot to the new follower node. The 
+          follower then connects to the leader and requests all data changes that have happened since the snapshot was taken
+          
+          Postgre use -- log sequence  & MYSQL uses bin log coordinates
+          
+       ** In case of leader failures 
+            ** One of the followers needs to be promoted
+            ** Clients need to be reconfigured to send writes to the new leader
+            ** Other followers need to be reconfigured to send writes to new leader
+            
+       ** How to determine leader has failed
+            ** Time out
+            ** Choose a new leader through consensus
      
-   
+       ** WAL Replication
+            ** Process the log build a copy of the exact same data structures as found on the leader
+            ** Postgre SQL and Oracle use WAL &
+            ** The main disadvantage is that this is to low level
+            
+       ** Logical (row-based ) replication
+            ** Different log formats for replication and different for storage engine
+            ** MySQL has this feature.
+            ** Advantages :
+                 ** Since a logical log is decoupled from storage engine internals , it can be more easily be kept backward compatible
+                 ** Also easier for external applications to parse the log. Ex: send contents of db to data ware house for CDC {change data capture}
+
+       ** Summary : 
+           ** Basically replication is for high availability and being able to tolerate node failures is just one reason for wanting replication
+           ** Another reason is scalability &
+           ** to reduce LATENCY by placing replicas geographically close to the users
+           ** Bascially leader based replication is a READ scaling architecture i.e. work loads consist of mostly reads  and only a small % of writes
+           ** Replication lag due to asynchronous nature of replication - leads to eventual consistency {i.e. a temporary state where followers will 
+              eventually catchup}
+           ** Challenges with replication lag:
+              ** Reading your own writes : with async replication user views the data shortly after making a write, if reads are coming from follower it 
+                 looks like the data submitted is lost due to lag
+              ** Read_After_Write : Read your writes , guaranteee that if user reloads the page they will always see any updates that they submitted , for 
+                 other users updates may not be visible
+            
+       ** Implementing read-after-write in leader based replication
+          ** When reading something that the users may have modified read it from leader, otherwise read it from follower
+          ** what if there are a lot of things that user can change? 
+             A) Cannot read from leader as it defeats the purpose of scaling so may be we monitor the replication lag  on followers and prevent queries on 
+                any follower that is more than a minute behind the leader
+          ** Use this in scenarios where users use cross devices ex fill form on mobile and log on to web       
+       
    
 ![Screen Shot 2022-07-27 at 10 22 56 AM](https://user-images.githubusercontent.com/7702406/181310266-e52c3755-0bb7-45dd-a88c-26dedd5ebd54.png)
 
    
-   
+      ** Monotonic reads
+      
+         ** That if one user makes several reads in a sequence, they will not see time go backward i.e. they will not read older data after having 
+            previously read new data
+         ** One way of achieving monotonic reads is to make sure each user always makes reads from same replica. The replica can be choose based on the # 
+            of the user ID , rather than choosing a random replica   
+            
+      ** consistent prefix reads 
+      
+      
+      ** Transactions
+      
+         ** Transactions exist for application developers to not worry about subtle replication issues and could just trust their databases to the do the 
+            right thing
+         ** Single node transactions are OK , however in distributed ( partitioned and replicated ) databases may systems have abandoned these , 
+            transactions are too expensive in terms of performance and availability
+            
+   **Multi leader replication**
+     
+     ** In leader based replication there is only one leader and all writes must go through it. If you cannot connect to leader you cannot write to the 
+        database so a natural extension is multi leader replication Also known as MASTER-MASTER or ACTIVE-ACTIVE replication. 
+     ** In this each leader acts as simulataenously as a follower to other leaders   
    
 **Latency**
       
