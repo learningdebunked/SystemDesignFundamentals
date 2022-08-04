@@ -960,7 +960,9 @@ In simple terminology, an index maps search keys to corresponding data on disk b
     ** Even though each record belongs to exactly one partition , it may still be stored on several nodes for fault tolerance
     ** A node may store more than one partition
     ** Each node may be a leader for some partitions and a follower for other partitions
-                            ![Screen Shot 2022-08-04 at 3 05 38 PM](https://user-images.githubusercontent.com/7702406/182960820-c9f80b82-fdfa-4e7c-9e2f-32317fde7217.png)
+ 
+                               
+  ![Screen Shot 2022-08-04 at 3 05 38 PM](https://user-images.githubusercontent.com/7702406/182960820-c9f80b82-fdfa-4e7c-9e2f-32317fde7217.png)
    
                                
 **Latency**
