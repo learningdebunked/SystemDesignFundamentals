@@ -931,8 +931,23 @@ In simple terminology, an index maps search keys to corresponding data on disk b
            ** Databases with leader less replication are best suited for use cases that require high availability and low latency and that can tolerate                 occasional stale reads                    
            ** Sloppy quorums: This is a temporary fix while the n/w glitch is corrected. Clients can connect to some database nodes during n/w 
                               interruption , not just to the nodes that are part of quorum such that reads/writes are accepted
+           ** hinted hand off: Once a n/w glitch is corrected writes are handed off to home nodes i.e. nodes part of the n/w. 
+           ** Sloppy quorums are optional in all common Dynamo implementations. In Cassandra this is disabled by default                    
    
-   
+**Multi Data center operation**
+                               
+    ** Cassandra and Voldermort implement multi data center support with normal leader less model.
+    ** Each write from client is sent to all replicas regardless of data center, but the client usually only waits for acknowledgment from a quorum of 
+       nodes  within its local data center to achieve low latency. The higher latency writes to other data centers are often configured to happen 
+       asynchronously
+    ** LWW ( Last write wins)
+         ** Only supported conflict resolution algorithm in Cassandra
+         ** Attach a time stamp to each write, pick the biggest time stamp as most recent and discard any writes with an earlier time stamp. 
+         ** This is a good convergence but at the cost of durability
+         ** If loosing data is not acceptable LWW is a poor choice for conflict resolution
+         ** Safe way of using LWW is to ensure that a key is only written once and is immutable. In Cassandra a recommended way is to use UUID as key and 
+            thus giving each write a unique key                      
+                               
 **Latency**
       
    ** If you've users around the world , you might want to have servers at various locations world wide so that each user can be served from a data center 
