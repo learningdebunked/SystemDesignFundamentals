@@ -946,7 +946,14 @@ In simple terminology, an index maps search keys to corresponding data on disk b
          ** This is a good convergence but at the cost of durability
          ** If loosing data is not acceptable LWW is a poor choice for conflict resolution
          ** Safe way of using LWW is to ensure that a key is only written once and is immutable. In Cassandra a recommended way is to use UUID as key and 
-            thus giving each write a unique key                      
+            thus giving each write a unique key
+    ** Version Vectors : 
+         ** Also called Vector clock
+         ** Ensures that it is safe to read from one replica and subsequently write back to another replica. Doing so may result in sibling being created 
+            but no data is lost as siblings are merged correctly. 
+         ** Involves a overhead on client
+         ** In simple words when comparing the state of replicas, version vectors are the right data structures to use
+                               
                                
 **Latency**
       
