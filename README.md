@@ -972,6 +972,10 @@ In simple terminology, an index maps search keys to corresponding data on disk b
                                ** Recommendation is to structure partition schemes so that secondary index queries can be served from single partition
                         
                   ** Term based partitioning : 
+                               ** Rather than each partition having its own local index , a global index that covers data in all the partitions
+                               ** To cover load the global index must also be partitioned
+                               ** The advantage is that reads are more efficient
+                  
  
                                
   ![Screen Shot 2022-08-04 at 3 05 38 PM](https://user-images.githubusercontent.com/7702406/182960820-c9f80b82-fdfa-4e7c-9e2f-32317fde7217.png)
