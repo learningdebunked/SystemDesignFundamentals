@@ -976,8 +976,8 @@ In simple terminology, an index maps search keys to corresponding data on disk b
                                ** To cover load the global index must also be partitioned
                                ** The advantage is that reads are more efficient, there is no scatter gather over all partitions. Clients only needs to 
                                   make a request to the partition containing the term it wants
-                               ** Down side is that writes are slower because single write to a document affects multiple partitions of index i.e. all the 
-                                  columns that are part of secondary index
+                               ** Down side is that writes are slower because single write to a document affects multiple partitions of index i.e. all 
+                                  the columns that are part of secondary index
                  ** Summary: Design your indexes / partitions based on query pattern
                  ** In practice updates to global secondary indexes are often asynchronous, the change you made may not be reflected on the index 
                     immediately       
@@ -987,7 +987,18 @@ In simple terminology, an index maps search keys to corresponding data on disk b
                                
   ![Screen Shot 2022-08-04 at 3 05 38 PM](https://user-images.githubusercontent.com/7702406/182960820-c9f80b82-fdfa-4e7c-9e2f-32317fde7217.png)
    
-                               
+**Rebalancing**
+               ** Process of moving load from one node in the cluster to another is called rebalancing
+               ** Rebalancing strategies:
+                             ** Hash Mod N : Not recommended
+                             ** Fixed number of partitions : 
+                                   ** Create many more partitions than there are nodes and assign several partitions to each node
+                                   ** Best performance is achieved when the size of the partition is just right , neither too big nor too small
+                             ** Dynamic partitioning :
+                                   
+                                       
+                        
+                        
 **Latency**
       
    ** If you've users around the world , you might want to have servers at various locations world wide so that each user can be served from a data center 
