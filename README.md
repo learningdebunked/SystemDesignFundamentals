@@ -1004,6 +1004,14 @@ In simple terminology, an index maps search keys to corresponding data on disk b
                             ** This approach can work well with both key range and hash partitioned data
                              
                                        
+**Request routing**
+                        
+     ** If I want to read or write a key ex: foo which IP address and port no do I need to connect to... This is where we plug in service discovery
+     ** Any piece of software that is accessible over a network especially if its aiming for high availability has this problem. Many companies have 
+        their in house service discovery tools
+     ** One way to solve this to build a routing tier that acts as a partition aware load balancer OR 
+     ** Clients being aware of paritions and the assignment of partitions
+                        
                         
                         
 **Latency**
