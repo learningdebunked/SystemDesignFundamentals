@@ -1011,6 +1011,15 @@ In simple terminology, an index maps search keys to corresponding data on disk b
         their in house service discovery tools
      ** One way to solve this to build a routing tier that acts as a partition aware load balancer OR 
      ** Clients being aware of paritions and the assignment of partitions
+     ** Many distributed systems rely on separate coordination services such as zoo-keeper to keep track of cluster metadata. Each node registers itself 
+        in zookeeper and zoo keeper maintains the authorization mapping of partition to nodes
+     ** Actors such as routing tiers or the partition aware client can subscribe to this info in zoo-keeper
+     ** When ever a partition changes ownership or a node is added or removed Zookeeper notifies the routing so thatit can keep its routing information 
+        upto date
+     ** Espresso's Helix for cluster manamgement inturn relies on Zoo keeper
+     ** Kafka uses zoo keeper to track partition assignments
+     ** Cassandra uses gossip protocol
+     ** Couchbase doesn't rebalance automatically
                         
                         
                         
