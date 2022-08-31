@@ -988,14 +988,21 @@ In simple terminology, an index maps search keys to corresponding data on disk b
   ![Screen Shot 2022-08-04 at 3 05 38 PM](https://user-images.githubusercontent.com/7702406/182960820-c9f80b82-fdfa-4e7c-9e2f-32317fde7217.png)
    
 **Rebalancing**
-               ** Process of moving load from one node in the cluster to another is called rebalancing
-               ** Rebalancing strategies:
-                             ** Hash Mod N : Not recommended
-                             ** Fixed number of partitions : 
-                                   ** Create many more partitions than there are nodes and assign several partitions to each node
-                                   ** Best performance is achieved when the size of the partition is just right , neither too big nor too small
-                             ** Dynamic partitioning :
-                                   
+                        
+     ** Process of moving load from one node in the cluster to another is called rebalancing
+     ** Rebalancing strategies:
+               ** Hash Mod N : Not recommended
+               ** Fixed number of partitions : 
+                            ** Create many more partitions than there are nodes and assign several partitions to each node
+                            ** Best performance is achieved when the size of the partition is just right , neither too big nor too small
+              ** Dynamic partitioning :
+                            ** When partition grows to exceed a configured size ( For HBASE its 10GB), it is split into two partitions so that 
+                               approximately half of the data end on each side of the split
+                            ** If data is deleted partitions are merged with adjacent. This adapts well to total data volume
+                            ** Each partition is assigned to one node and each node can handle multiple partitions
+                            ** HBase transfers partitions through HDFS
+                            ** This approach can work well with both key range and hash partitioned data
+                             
                                        
                         
                         
