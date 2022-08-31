@@ -974,7 +974,14 @@ In simple terminology, an index maps search keys to corresponding data on disk b
                   ** Term based partitioning : 
                                ** Rather than each partition having its own local index , a global index that covers data in all the partitions
                                ** To cover load the global index must also be partitioned
-                               ** The advantage is that reads are more efficient
+                               ** The advantage is that reads are more efficient, there is no scatter gather over all partitions. Clients only needs to 
+                                  make a request to the partition containing the term it wants
+                               ** Down side is that writes are slower because single write to a document affects multiple partitions of index i.e. all the 
+                                  columns that are part of secondary index
+                 ** Summary: Design your indexes / partitions based on query pattern
+                 ** In practice updates to global secondary indexes are often asynchronous, the change you made may not be reflected on the index 
+                    immediately       
+                            
                   
  
                                
