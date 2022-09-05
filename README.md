@@ -1032,9 +1032,38 @@ In simple terminology, an index maps search keys to corresponding data on disk b
                         ** Consistency: Certain statements about your data must always be true. If a transaction starts with a database that is valid     
                                       according to some invariants and so any further writes preserve its invariants
                         ** Isolation: Concurrently executing transactions are isolated from each other , they cannot step up on each other toes. The 
-                        database ensures that when transactions have comitted , the result is the same as if they had run serially though in reality they 
-                        may have run concurrently. If one of the transaction makes several writes, then another transaction should see either all or none 
-                        of the writes but not subset            
+                                      database ensures that when transactions have comitted , the result is the same as if they had run serially though 
+                                      in reality they may have run concurrently. If one of the transaction makes several writes, then another transaction 
+                                      should see either all or none of the writes but not subset            
+                        ** Durability: Durability is a promise that once a transaction has committed successfully any data it has written will not be 
+                                      forgotten even if there is hardware fault or database crashes
+    ** Dirty read : One transactions reads another transactions uncomitted data
+    ** Many distributed data stores have abondoned multi object transactions because they are difficult to implement across partitions and they 
+    can get in the way in some scenarios where high availability or performance is required             
+    ** Transactions are very useful in this situation to prevent denormalized data from going out of sync. If we want to make sure that several different 
+    systems either commit or abort together two phase commit can help
+    ** Transaction isloation:  Databases have long tried to hide concurrency issues from application developers by providing transaction isolation. In 
+    theory should make life easier by pretending that no concurrency is happening
+    ** Serializable isolation means that the db guarantees that transactions have the same effect as if they have ran serially. This has performance cost     so we use weak isolation and it protects against some concurrency issues
+    ** Read comitted:
+                        ** Most basic level 
+                        ** Makes two guarantees i.e. no dirty reads and no dirty writes
+                        ** Dirty reads:  Read data that has been committed.
+                        ** Dirty writes: Over write data that has been comitted/ Any writes by a transaction only become visible to others when that 
+                           transaction commits
+                        ** Prevents dirty writes by using row-level locks
+                        ** Row level locks:
+                                   ** Automatically done by databases in read committed  mode
+                                   ** One long running write transaction can force many read only transactions to wait , they harm response times. So to avoid this issue most databases prevent dirty reads by remembering both the old committed value and the new value set by transaction that currently holds the write lock. While the transaction is going on other read transactions are simply given old value   
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
                         
 **Latency**
       
