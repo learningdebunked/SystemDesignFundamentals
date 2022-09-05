@@ -1021,7 +1021,20 @@ In simple terminology, an index maps search keys to corresponding data on disk b
      ** Cassandra uses gossip protocol
      ** Couchbase doesn't rebalance automatically
                         
-                        
+  **Transactions**
+ 
+    ** Fault tolerance mechanisms in Databases
+            ** BASE : Basically available soft state and eventual consistency
+            ** ACID : Atomicity , Consistency , Isolation and Durability
+                        ** Atomicity: The ability to abort a transaction on error and have all writes from that transactoin discard is the defining 
+                                      feature of ACID. Database provides a all or nothing guarantee. The database saves you from having to worry about 
+                                      partial failures by giving an all or nothing guarantee
+                        ** Consistency: Certain statements about your data must always be true. If a transaction starts with a database that is valid     
+                                      according to some invariants and so any further writes preserve its invariants
+                        ** Isolation: Concurrently executing transactions are isolated from each other , they cannot step up on each other toes. The 
+                        database ensures that when transactions have comitted , the result is the same as if they had run serially though in reality they 
+                        may have run concurrently. If one of the transaction makes several writes, then another transaction should see either all or none 
+                        of the writes but not subset            
                         
 **Latency**
       
