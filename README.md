@@ -1128,7 +1128,16 @@ In simple terminology, an index maps search keys to corresponding data on disk b
    
 **Challenges with Distributed systems**
    
-   ** Anything that can go wrong will go wrong
-   ** Some parts of the sytem that are broken in some unpredictable way is partial failure. Difficulty is that these are non-deterministic
-   ** Super computer - Just like a single node computer it deals with partial failure by letting it escalate into total failure
-   ** Fault handling must be part of software design and we need to know the behavior to expect from software in case of a fault
+    **  Anything that can go wrong will go wrong   
+    **  Some parts of the sytem that are broken in some unpredictable way is partial failure. Difficulty is that these are non-deterministic
+    **  Super computer - Just like a single node computer it deals with partial failure by letting it escalate into total failure
+    **  Fault handling must be part of software design and we need to know the behavior to expect from software in case of a fault
+    **  Building a reliable system from unreliable components is part of Software Engineering. Ex: Internal Protocol is unreliable it may drop delay 
+        duplicate or reorder packets. TCP provides a more reliable transport layer on top of IP. Ensure missing packets are retransmitted, duplicates   
+        are eliminated and packets are reassembled in the order they were sent
+    **  TCP can hide packet loss, duplication and reordering from you but it cannot magically remove delays in the N/w
+    ** Shared nothing is not the only way of building systems but it has become the dominant approach for building internet services. Its comparitively          cheap because it requires no special hardware. It can make use of commodity cloud computing services and can achieve high reliability through  
+       redundancy across multiple geographically distributed data centers
+    ** Internet and most internal networks in data centers are asynchronous packet n/w i.e. one node can send a message to another but n/w gives no 
+       guarantees as to when it will arrive or whether it will arrive
+   
