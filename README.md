@@ -1160,7 +1160,18 @@ In simple terminology, an index maps search keys to corresponding data on disk b
             ** NTP is a mechanism to synchronize clocks . Allows the computer clock to be adjusted according to the time reported by group of servers. 
                These servers inturn get time from a GPS receiver
             ** NTP allows the clock rate to be speeded up or showed down by 0.05%
-            
+            ** Different kinds of clocks
+                   ** Time of the day clock : Usually syncrhonized with NTP
+                   ** Monotonic clock: In distributed systems using a monotonic clock for elapsed time is usually fine because it doesn't assume any
+                      synchronization b/w diff node's clocks
+            ** Quartz clock in a computer is not very accurate it drifts ( runs faster or slower )
+            ** Clock drift varies depending on the temparature of the machine
+            ** Google assumes a clock drift of 200 PPM ( parts per million), equivalent to 6ms drift for a clock that is synchronized every 30s or 17s
+               drift that is synchronized once a day
+    ** Software must be designed on the assumption that network will occassionally be faulty and s/w must handle such faults gracefully. The same is true
+       with clocks although they work quite well  most of the time. Robust software needs to be prepared to deal with incorrect clocks
+    ** If you use Software that requires synchronized clocks it is essential that you also carefully monitor the clock offset b/w all the machines
+    ** Logical clocks: Based on incrementing counters rather than oscillating quartz crystal are safer alternatives for ordering events
             
    
  
