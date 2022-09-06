@@ -1172,6 +1172,9 @@ In simple terminology, an index maps search keys to corresponding data on disk b
        with clocks although they work quite well  most of the time. Robust software needs to be prepared to deal with incorrect clocks
     ** If you use Software that requires synchronized clocks it is essential that you also carefully monitor the clock offset b/w all the machines
     ** Logical clocks: Based on incrementing counters rather than oscillating quartz crystal are safer alternatives for ordering events
-            
+    ** Google deploys. GPS reciever or atomic clock in each data center allowing clocks to be synchronized to within about 7ms            
    
  
+ **Garbage collection in Java**
+   
+    ** Thread pausing : OS Context switching to another thread or Hypervisor switches to different VM or GC pauses or IO pauses or OS Paging
