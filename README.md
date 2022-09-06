@@ -1123,5 +1123,12 @@ In simple terminology, an index maps search keys to corresponding data on disk b
                         
 **Latency**
       
-   ** If you've users around the world , you might want to have servers at various locations world wide so that each user can be served from a data center 
-      that is geographicall close to them. This avoid the users having to wait for N/W packets to travel halfway around the world
+    ** If you've users around the world , you might want to have servers at various locations world wide so that each user can be served from a data     
+       center that is geographically close to them. This avoid the users having to wait for N/W packets to travel halfway around the world
+   
+**Challenges with Distributed systems**
+   
+   ** Anything that can go wrong will go wrong
+   ** Some parts of the sytem that are broken in some unpredictable way is partial failure. Difficulty is that these are non-deterministic
+   ** Super computer - Just like a single node computer it deals with partial failure by letting it escalate into total failure
+   ** Fault handling must be part of software design and we need to know the behavior to expect from software in case of a fault
