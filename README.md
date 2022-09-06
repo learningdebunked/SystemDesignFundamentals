@@ -1094,9 +1094,14 @@ In simple terminology, an index maps search keys to corresponding data on disk b
                                   ** Purpose of this operation is to avoid lost updates by allowing an update to happen only if the va;ue has not changed 
                                      since you last read it. If the current value doesn't match what you previously read the update has no effect and the 
                                      read modify write cycle must be retried
-          
+
+                       ** Replication and conflict resolution :
+                                  ** For databases with multileader or leaderless replication techniques based on locks or compare and set don't apply
+                                  ** Common approach in such replicated databases is to allow concurrent writes to several conflicting versions of a 
+                                     value and to use application code or special data structures to resolve and merge the versions
+   
                            
-                                              
+                                                                       
                         
                         
                         
