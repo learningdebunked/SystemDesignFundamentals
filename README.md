@@ -1100,8 +1100,23 @@ In simple terminology, an index maps search keys to corresponding data on disk b
                                   ** Common approach in such replicated databases is to allow concurrent writes to several conflicting versions of a 
                                      value and to use application code or special data structures to resolve and merge the versions
    
-                           
-                                                                       
+                       ** Dirty writes and lost updates - 2 kinds of race conditions that can occur when different transactions concurrently try to write 
+                          to same object                      
+                       
+                       ** Write Skew: Neither dirty write nor lost update because the two transactions are updating two different objects
+                                 ** Only solution is True Serializable solution
+                                 ** Not automatically detected in PostGreSQL's repeatable read , MYSQL's InnoDB repeatable read and SQL Server's snap                                         shot isolation level
+                                 ** If you cannot use Serializable isolation, the second best option is to explicitly lock the rows that the transaction 
+                                    depends on. Ex: Use of FOR UPDATE tells the database to lock all rows returned by the query
+                       ** Under snapshot isolation we cannot prevent two users from claiming usernames so applying unique constraints is the best
+                       ** Phantom : Write in one transaction changes the result of a search query in another transaction
+                       ** Snapshot isolation avoids phantoms in read only queries but in read write transactions phantoms can lead to write skew
+                       ** Materializing  conflicts :
+                                 ** Disadvantage is that concurrency control mechanism leaks into application data model
+                                 ** Takes a phantom and turns into a lock
+                                 ** Should be the last resort
+                       ** Summary : Serializable isolation is much preferred option in most cases          
+                                 
                         
                         
                         
