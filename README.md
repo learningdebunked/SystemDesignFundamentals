@@ -1178,3 +1178,8 @@ In simple terminology, an index maps search keys to corresponding data on disk b
  **Garbage collection in Java**
    
     ** Thread pausing : OS Context switching to another thread or Hypervisor switches to different VM or GC pauses or IO pauses or OS Paging
+    ** Limiting the impact of GC :
+           ** Treat GC pauses as outages and to let other nodes handle requests from clients
+           ** If run time can warn the application that a node soon requires GC pause the application can stop sending requests to the node
+           ** Another way is to Garbage collect only for short lived objects and to restart the process periodically
+   
