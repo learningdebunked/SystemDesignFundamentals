@@ -1080,8 +1080,23 @@ In simple terminology, an index maps search keys to corresponding data on disk b
                                   ** Atomic writes are also known as cursor stability. In atomic writes we express code in terms of atomic operations
                                   ** Implemented by taking an exclusive lock on the object when it is read so that no transaction can read it until the 
                                      update is applied
-                        
-                        
+                                  ** Explicit locking : Application to explicitly lock objects that are going to be updated so that when T1 is on T2 is 
+                                     forced to wait
+                                  ** Automatically detecting lost updates : Alternative is to allow the transactions to execute in parallel and if 
+                                     Transaction manager detects a lost update, abort the transaction and force it to retry its read->modify->write cycle
+                                  ** Postgre SQL's repeatable read , Oracle's Serializable and SQL Server's snapshot isolation -> Automatically detect 
+                                     when a lost update has occured and abort transactions
+                                  ** MySQL's with Inno DB repetable read doesn't detect lost updates
+                                  ** For Lost update detection it doesn't require application code to use any special database feature
+          
+                       ** Compare and Set :
+                                  ** In DB Engines that don't provide transactions 
+                                  ** Purpose of this operation is to avoid lost updates by allowing an update to happen only if the va;ue has not changed 
+                                     since you last read it. If the current value doesn't match what you previously read the update has no effect and the 
+                                     read modify write cycle must be retried
+          
+                           
+                                              
                         
                         
                         
