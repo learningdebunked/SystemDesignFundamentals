@@ -1054,7 +1054,19 @@ In simple terminology, an index maps search keys to corresponding data on disk b
                         ** Prevents dirty writes by using row-level locks
                         ** Row level locks:
                                    ** Automatically done by databases in read committed  mode
-                                   ** One long running write transaction can force many read only transactions to wait , they harm response times. So to avoid this issue most databases prevent dirty reads by remembering both the old committed value and the new value set by transaction that currently holds the write lock. While the transaction is going on other read transactions are simply given old value   
+                                   ** One long running write transaction can force many read only transactions to wait , they harm response times. So to 
+                                      avoid this issue most databases prevent dirty reads by remembering both the old committed value and the new value 
+                                      set by transaction that currently holds the write lock. While the transaction is going on other read transactions 
+                                      are simply given old value   
+   ** Non repeatable read or read skew : 
+                       ** Snapshot isolation is the most common solution
+                       ** Each transaction reads from a consistent snapshot of the database , that is the transaction sees all the data that was committed in the database at the start of the transaction. Even if the data is subsequently modified by another transaction each transaction only sees the old data from that particular point in time
+                        ** Snap shot isolation us supported by PostgreSQL , MySQL with InnoDB storage
+                        ** The key principle for snapshot isolation is that readers never block writers and writers never block readers , so long running 
+                           queries are not impacted
+                        ** Snapshot isolation is also known as MVCC ( Multi versioned concurrency control )
+                        ** By never updating values in place but instead creating a new version any time a value is changed the database can provide a 
+                           consistent snapshot with little over head
                         
                         
                         
