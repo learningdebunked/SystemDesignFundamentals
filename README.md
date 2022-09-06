@@ -1183,3 +1183,26 @@ In simple terminology, an index maps search keys to corresponding data on disk b
            ** If run time can warn the application that a node soon requires GC pause the application can stop sending requests to the node
            ** Another way is to Garbage collect only for short lived objects and to restart the process periodically
    
+**Fencing Tokens**
+   
+   ** When using a lock or lease to protect access to some resource such as file storage we need to ensure that a node that is under a false belief of 
+      being leader cannot disrupt the system
+   
+**Byzantine faults**
+   
+   ** A node may claim to have received a particular message when in fact it didnot
+   ** A system is Byzantine fault tolerant if it continues to operate correctly even if some of the nodes are malfunctioning and not obeying the protocol 
+      or if malicious attackers are interfering with the network
+   
+**Consistency and Consensus**
+   ** Linearizability : Strongest consistency model in common use. Gives an illusion to client that there is only one replica, then every client would 
+      have the samew view of the data and you wouldn't worry about replication lag
+   ** Linerizability is also known as atomic consistency , strong consistency or external consistency
+   ** Linerizability is a recency guarantee. In a linerizable system as soon as one client successfully completes a write all clients reading from that  
+      database must be able to see the value just written
+   ** Query returning a stale result is a violation of Linerizability
+   ** Basic idea behind linearizability is simple to make a system appear as if there is only a single copy of data
+   ** A database may provide both serializability and linearixability and thus is known as Strict Serializability or Strong one copy serializability
+   ** Where to use Linearizability :
+   
+   
