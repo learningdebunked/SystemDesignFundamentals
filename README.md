@@ -1139,5 +1139,28 @@ In simple terminology, an index maps search keys to corresponding data on disk b
     ** Shared nothing is not the only way of building systems but it has become the dominant approach for building internet services. Its comparitively          cheap because it requires no special hardware. It can make use of commodity cloud computing services and can achieve high reliability through  
        redundancy across multiple geographically distributed data centers
     ** Internet and most internal networks in data centers are asynchronous packet n/w i.e. one node can send a message to another but n/w gives no 
-       guarantees as to when it will arrive or whether it will arrive
+       guarantees as to when it will arrive or whether it will arrive. In these if you send a request to another node and don't receive a response it is 
+       impossible to tell why. The usual way of handling is through time outs i.e. after some time you give up waiting and assume that the response is 
+       not going to arrive.
+    ** In a medium size DC there are 12 Network faults per month
+    ** A network interface that some timesdrops all inbound packets but sends out bound packets successfully so just bcoz a n/w links works in one 
+       direction and it doesn't guanrantee its also working in opposite direction
+    ** When one part of the network is cut off from the rest due to network fault it is called Network PArtition or Net split
+    ** When a node is declared dead its responsibilities need to be transferred to other nodes which places additional load on other nodes and the 
+       network. IF the system is already struggling with high load declaring nodes prematurely can make the problems worse
+    ** Most systems we work with have unbounded delays , that is they try to deliver packets as quickly as possible but there is no upper limit on the 
+       time it may take for packet to arrive   
+    ** TCP performs flow control ( Also known as Congestion avoidance) or back pressure in which a node limits its own rate of sending inorder to avoid 
+       overloading a n/w link  
+    ** In public clouds and multi tenant data centers resources are shared among customers. Network delays can be highly variable if someone near you ( a 
+       noisy neighbor)   is using a lot of resources
+    ** Unreliable clocks 
+            ** Each machine has its own notion of time
+            ** NTP stands for Network Time protocol
+            ** NTP is a mechanism to synchronize clocks . Allows the computer clock to be adjusted according to the time reported by group of servers. 
+               These servers inturn get time from a GPS receiver
+            ** NTP allows the clock rate to be speeded up or showed down by 0.05%
+            
+            
    
+ 
