@@ -278,7 +278,7 @@ So the way to solve this is Consistent Hashing
 
 Consistent hashing is the technique to distribute requests/ data efficiently across servers.
 
-Real world systems using Consistent Hashing:
+Real world systems using Consistent Hashing:
 1) Discord chat application
 2) Akamai CDN
 3) Data partitioning across the clusters in Apache cassandra
@@ -1058,19 +1058,28 @@ In simple terminology, an index maps search keys to corresponding data on disk b
                                       avoid this issue most databases prevent dirty reads by remembering both the old committed value and the new value 
                                       set by transaction that currently holds the write lock. While the transaction is going on other read transactions 
                                       are simply given old value   
-   ** Non repeatable read or read skew : 
-                       ** Snapshot isolation is the most common solution
-                       ** Each transaction reads from a consistent snapshot of the database , that is the transaction sees all the data that was committed in the database at the start of the transaction. Even if the data is subsequently modified by another transaction each transaction only sees the old data from that particular point in time
-                        ** Snap shot isolation us supported by PostgreSQL , MySQL with InnoDB storage
-                        ** The key principle for snapshot isolation is that readers never block writers and writers never block readers , so long running 
-                           queries are not impacted
-                        ** Snapshot isolation is also known as MVCC ( Multi versioned concurrency control )
-                        ** By never updating values in place but instead creating a new version any time a value is changed the database can provide a 
-                           consistent snapshot with little over head
-                        
-                        
-                        
-                        
+                       ** Non repeatable read or read skew : 
+                                   ** Snapshot isolation is the most common solution
+                                   ** Each transaction reads from a consistent snapshot of the database , that is the transaction sees all the data that 
+                                      was committed in the database at the start of the transaction. Even if the data is subsequently modified by 
+                                      another transaction each transaction only sees the old data from that particular point in time
+                                   ** Snap shot isolation us supported by PostgreSQL , MySQL with InnoDB storage
+                                   ** The key principle for snapshot isolation is that readers never block writers and writers never block readers , so                                         long running queries are not impacted
+                                   ** Snapshot isolation is also known as MVCC ( Multi versioned concurrency control )
+                                   ** By never updating values in place but instead creating a new version any time a value is changed the database can                                         provide a consistent snapshot with little over head
+                                   ** Snapshot isolation is a useful isolation level especially for read only transactions
+                                   ** In Oracle db it is called Serializable
+                                   ** In MySQL it is called repeatable read
+                                   ** Snapshot isolation needs a background process for compaction and garbage collection
+                       ** Read comitted and snapshot isolation for what a read only transaction can see in the presence of concurrent writes. Other 
+                          problems like lost update problem can also occur i.e. if two transactions concurrently do read modify write then one of the 
+                          modifications can be lost
+                            
+                       ** How to handle the lost update problem :
+                                  ** The solution is a)atomic writes and b) Explicit locking
+                                  ** Atomic writes are also known as cursor stability. In atomic writes we express code in terms of atomic operations
+                                  ** Implemented by taking an exclusive lock on the object when it is read so that no transaction can read it until the 
+                                     update is applied
                         
                         
                         
