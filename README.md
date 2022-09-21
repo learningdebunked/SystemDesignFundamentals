@@ -16,7 +16,11 @@ Systems that can anticipate faults and cope up are known as Resilient systems
 **Elastic:**
 Some systems are Elastic meaning that they can automatically add computing resources when they detect a load, where as other systems are scaled manually
 
+**Head of line blocking**
 
+    ** A server can only process a small number of requests in parallel ( limited for ex by CPU Cores). It only takes a small number of slow requests to 
+       hold up the processing of subsequent requests 
+       
 **Http vs Http(s)**
 
 **What is a socket ? what is a connection ?**
@@ -1213,3 +1217,4 @@ In simple terminology, an index maps search keys to corresponding data on disk b
           ** Distributed locking is also used at much granular level to implement Linearizable operations   
    
    
+  
