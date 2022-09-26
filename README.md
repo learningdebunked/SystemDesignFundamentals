@@ -543,6 +543,8 @@ SAGA ORCHESTRATOR VS CHOREOGRAPHY:
  
 Data model types:
 
+At a higher level there are two broad categories: a) Relation Databases b) Non relational databases
+
 1) Relational model - The query optimizer automatically decides which parts of the query to execute and in which order , along with indexes to use. 
    If we want to query data in new ways , you can declare a new index and queries will automatically use the most appropriate indexes
    
@@ -580,7 +582,14 @@ b) Triple store model - SPARQL , query language for triple stores using RDF data
     b) The way it works is that to reassemble entire row , you can take the entry from each of the individual column files and put them together to form  
        the row in a table
     c) Another advantage of column oriented  storage is that data can be compressed. Common compression is bit map encoding.
- 
+
+**Non Relational databases can be used if:**
+
+    a) Application requires super low latency
+    b) Data is unstructured
+    c) Need to serialize and de-serialize data
+    d) store massive amount of data
+    
 In-Memory db: The performance gain of in-memory db is not due to the fact that data is not read from disk but because they can avoid the over heads of encoding in memory data structures in a form that can be writtern to disk
 
 Graphs are good for evolvability as we add features to application . A graph can be extended easily to accomodate changes in applications data structure.
@@ -777,6 +786,11 @@ In simple terminology, an index maps search keys to corresponding data on disk b
  
  **Replication**
    
+    ** Replication strategies: ( Used if master goes offline , then one of the slaves is promoted ) 
+       ** Multi master 
+       ** Circular replication
+    ** If slave goes offline  , reads are redirected to master temporarily until new slave is added
+    
     ** Keeping copy of same data on multiple machines that are connected via network
     ** Keep data geographically close to users
     ** to serve more read queries
