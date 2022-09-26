@@ -193,8 +193,20 @@ So to mitigate this :
 2) or use Cache-Control headers. So browser based on these header MAX-AGE{Amount of time it takes for a cache copy to expire} sends another request to the server
 3) Another approach is Cache busting. You cache assets with a hash or e-tag {is unique compared to previous versions}
 
-What is Cache busting?
-This is a mechanism to tell the browser that new version of the file is available. So browser doesn't retrieve the old file from Cache but rather makes request to origin server for new file. The advantage of this is that users receive the most recently updated file without having to perform a hard refresh or clear browser cache
+**Cache**
+
+   ** When to use Cache ?
+       ** Data is read frequently but modified infrequently
+       ** Expiration time or TTL should not be too high nor too low
+      
+   ** What is Cache busting?
+      ** This is a mechanism to tell the browser that new version of the file is available. So browser doesn't retrieve the old file from Cache but 
+         rather makes request to origin server for new file. The advantage of this is that users receive the most recently updated file without having to 
+         perform a hard refresh or clear browser cache
+   ** What are Cache eviction poilicies ?
+      ** LRU
+      ** LFU
+      ** FIFO
 
 There are three ways to implement Cache busting:
 
