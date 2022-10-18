@@ -1255,6 +1255,8 @@ In simple terminology, an index maps search keys to corresponding data on disk b
   certificate.
   
   How can we debug SSL handshake from a Java application ?
+  https://docs.oracle.com/javase/7/docs/technotes/guides/security/jsse/ReadDebug.html
+  
   How does an application built in Java connect with a remote server and establish its identity ? What are the options ?
   
   
