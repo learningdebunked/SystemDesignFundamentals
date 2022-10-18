@@ -1246,5 +1246,16 @@ In simple terminology, an index maps search keys to corresponding data on disk b
              Linearizable operations ina fault tolerant way
           ** Distributed locking is also used at much granular level to implement Linearizable operations   
    
-   
+   **SSL/TLS Handshake - How it works ? **
+  What is trust store ?
+  What is key store ?
+  
+  Keystores and truststores are repositories that contain cryptographic artifacts like certificates and private keys that are used for cryptographic    
+  protocols such as TLS. A keystore contains personal certificates, plus the corresponding private keys that are used to identify the owner of the 
+  certificate.
+  
+  How can we debug SSL handshake from a Java application ?
+  How does an application built in Java connect with a remote server and establish its identity ? What are the options ?
+  
+  
   
