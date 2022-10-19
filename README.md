@@ -1251,13 +1251,22 @@ In simple terminology, an index maps search keys to corresponding data on disk b
 **SSL/TLS Handshake - How it works ?**
     
          ** SSL/TLS is of two types : a) One way SSL b) Two way SSL
+         
          ** One Way SSL:
-              ** Server proves its identity and this is usually the setup in most of the enterprises
+              ** Server proves its identity and this is usually the setup in most of the enterprises.
+              ** In one way SSL, only client validates the server to ensure that it receives data from the intended server. For implementing one-way SSL, 
+                 server shares its public certificate with the clients.
+                 
          ** Two Way SSL :
               ** Both Client and Server needs to prove their identities and this is not a typical setup
+              ** Contrary to one-way SSL; in case of two-way SSL, both client and server authenticate each other to ensure that both parties involved in 
+                 the communication are trusted. Both parties share their public certificates to each other and then verification/validation is performed 
+                 based on that.
+              
          ** SSL / TLS is a multi step approach however at a very high level in a one way SSL where Server proves it identity , it presents its  
             Certificate  to Client before connection is opened. The Client looks at the signer / ROOT CA of the certificate presented by Server 
             in its  trust/key store and if valid  establishes a secure connection
+            
          ** In a client server application , client can rely on a default key store or choose to over ride the cert store.
             In BE applications developed using Java like a REST Webservice talking to a database on cloud in order for the
             BE to trust the identity of the database server on cloud the client can rely on a default key store provided by Oracle inside JDK in a 
