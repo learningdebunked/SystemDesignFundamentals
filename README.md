@@ -1246,36 +1246,42 @@ In simple terminology, an index maps search keys to corresponding data on disk b
              Linearizable operations ina fault tolerant way
           ** Distributed locking is also used at much granular level to implement Linearizable operations   
    
- **SSL/TLS Handshake - How it works ? **
-        ** SSL/TLS is of two types : a) One way SSL b) Two way SSL
-        ** One Way SSL:
-           ** Server proves its identity and this is usually the setup in most of the enterprises
-        ** Two Way SSL :
-           ** Both Client and Server needs to prove their identities and this is not a typical setup
-        ** SSL / TLS is a multi step approach however at a very high level in a one way SSL where Server proves it identity , it presents its Certificate            to Client before connection is opened. The Client looks at the signer / ROOT CA of the certificate presented by Server in its trust/key store            and if valid  establishes a secure connection
-        ** In a client server application , client can rely on a default key store or choose to over ride the cert store.
-           In BE applications developed using Java like a REST Webservice talking to a database on cloud in order for the BE to trust the identity of the            database server on cloud the client can rely on a default key store provided by Oracle inside JDK in a cacerts folder. So the client can                  choose to use this key store which contains the Root CA of all major certifying authorities. Alternatively the Java application can use a 
-           custom key store or trust store and pass them in the JAVA_OPTS using the two parameters as below
+     
+
+**SSL/TLS Handshake - How it works ?**
+    
+         ** SSL/TLS is of two types : a) One way SSL b) Two way SSL
+         ** One Way SSL:
+              ** Server proves its identity and this is usually the setup in most of the enterprises
+         ** Two Way SSL :
+              ** Both Client and Server needs to prove their identities and this is not a typical setup
+         ** SSL / TLS is a multi step approach however at a very high level in a one way SSL where Server proves it identity , it presents its  
+            Certificate  to Client before connection is opened. The Client looks at the signer / ROOT CA of the certificate presented by Server 
+            in its  trust/key store and if valid  establishes a secure connection
+         ** In a client server application , client can rely on a default key store or choose to over ride the cert store.
+            In BE applications developed using Java like a REST Webservice talking to a database on cloud in order for the
+            BE to trust the identity of the database server on cloud the client can rely on a default key store provided by Oracle inside JDK in a 
+            cacerts folder. So the client can choose to use this key store which contains the Root CA of all major certifying authorities. 
+            Alternatively the Java application can use a custom key store or trust store and pass them in the JAVA_OPTS using the two parameters as below
    
                  -Djavax.net.ssl.trustStorePassword=<password of the trust or key store>
                  -Djavax.net.ssl.trustStore=/app/.certs/<applications own cert store like rapidssl.jks>   
        
-       ** What is SSL and What is TLS and what are the differences?      
-       ** What is trust store ?
-       ** What is key store ?
-       ** Keystores and truststores are repositories that contain cryptographic artifacts like certificates and private keys that are used for       
-         cryptographic protocols such as TLS. A keystore contains personal certificates, plus the corresponding private keys that are used 
-         to identify the owner of the certificate.
-       ** How can we debug TLS/SSL handshake from a Java application ?              
-          https://docs.oracle.com/javase/7/docs/technotes/guides/security/jsse/ReadDebug.html
-       ** How does an application built in Java connect with a remote server and establish its identity ? What are the options ?
-          keyStore will be used to store server certificates which the server will present to the client on SSL connection.
-       ** Command to view a key store : 
-                ** $keytool -list -v -keystore keystore.jks 
+        ** What is SSL and What is TLS and what are the differences?      
+        ** What is trust store ?
+        ** What is key store ?
+        ** Keystores and truststores are repositories that contain cryptographic artifacts like certificates and private keys that are used for       
+           cryptographic protocols such as TLS. A keystore contains personal certificates, plus the corresponding private keys that are used 
+           to identify the owner of the certificate.
+        ** How can we debug TLS/SSL handshake from a Java application ?              
+              https://docs.oracle.com/javase/7/docs/technotes/guides/security/jsse/ReadDebug.html
+        ** How does an application built in Java connect with a remote server and establish its identity ? What are the options ?
+           keyStore will be used to store server certificates which the server will present to the client on SSL connection.
+        ** Command to view a key store : 
+                ** $keytool -list -v -keystore <nameofthekeystore.jks> 
                 
-       ** To View a key store we can also use Key Store Explorer tool from : https://keystore-explorer.org/downloads.html
-       ** The cacerts file is a collection of trusted certificate authority (CA) certificates. Oracle includes a cacerts file with its SSL support in the 
-          Java™ Secure Socket Extension (JSSE) tool kit and JDK. It contains certificate references for well-known Certificate authorities, such as     
-          VeriSign™. Its format is the "keystore" format defined by Oracle. An administrator can edit the cacerts file with a command line tool (also   
+        ** To View a key store we can also use Key Store Explorer tool from : https://keystore-explorer.org/downloads.html
+        ** The cacerts file is a collection of trusted certificate authority (CA) certificates. Oracle includes a cacerts file with its SSL support in  
+           the Java™ Secure Socket Extension (JSSE) tool kit and JDK. It contains certificate references for well-known Certificate authorities, such as           VeriSign™. Its format is the "keystore" format defined by Oracle. An administrator can edit the cacerts file with a command line tool (also   
           provided by Oracle) called keytool
   
