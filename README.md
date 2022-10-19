@@ -1287,3 +1287,4 @@ In simple terminology, an index maps search keys to corresponding data on disk b
             the Java™ Secure Socket Extension (JSSE) tool kit and JDK. It contains certificate references for well-known Certificate authorities, such as             VeriSign™. Its format is the "keystore" format defined by Oracle. An administrator can edit the cacerts file with a command line tool (also   
             provided by Oracle) called keytool
   
+         ** References: https://dzone.com/articles/ssl-in-java
