@@ -1247,6 +1247,8 @@ In simple terminology, an index maps search keys to corresponding data on disk b
           ** Distributed locking is also used at much granular level to implement Linearizable operations   
    
    **SSL/TLS Handshake - How it works ? **
+   
+   What is SSL and What is TLS and what are the differences?
   What is trust store ?
   What is key store ?
   
@@ -1254,10 +1256,14 @@ In simple terminology, an index maps search keys to corresponding data on disk b
   protocols such as TLS. A keystore contains personal certificates, plus the corresponding private keys that are used to identify the owner of the 
   certificate.
   
-  How can we debug SSL handshake from a Java application ?
+  How can we debug TLS/SSL handshake from a Java application ?
   https://docs.oracle.com/javase/7/docs/technotes/guides/security/jsse/ReadDebug.html
   
   How does an application built in Java connect with a remote server and establish its identity ? What are the options ?
-  
+  keyStore will be used to store server certificates which the server will present to the client on SSL connection.
+
+  Command to view a key store : keytool -list -v -keystore keystore.jks .
+  Alternatively we can also use Key Store Explorer tool from : https://keystore-explorer.org/downloads.html
+
   
   
