@@ -1266,22 +1266,24 @@ In simple terminology, an index maps search keys to corresponding data on disk b
    
                  -Djavax.net.ssl.trustStorePassword=<password of the trust or key store>
                  -Djavax.net.ssl.trustStore=/app/.certs/<applications own cert store like rapidssl.jks>   
-       
-        ** What is SSL and What is TLS and what are the differences?      
-        ** What is trust store ?
-        ** What is key store ?
-        ** Keystores and truststores are repositories that contain cryptographic artifacts like certificates and private keys that are used for       
+    
+         ** Java automatically looks for a certificate (or its root CA) in its keystores for all TLS requests.
+           If it’s found, the TLS handshake will be successfully established
+         ** What is SSL and What is TLS and what are the differences?      
+         ** What is trust store ?
+         ** What is key store ?
+         ** Keystores and truststores are repositories that contain cryptographic artifacts like certificates and private keys that are used for       
            cryptographic protocols such as TLS. A keystore contains personal certificates, plus the corresponding private keys that are used 
            to identify the owner of the certificate.
-        ** How can we debug TLS/SSL handshake from a Java application ?              
+         ** How can we debug TLS/SSL handshake from a Java application ?              
               https://docs.oracle.com/javase/7/docs/technotes/guides/security/jsse/ReadDebug.html
-        ** How does an application built in Java connect with a remote server and establish its identity ? What are the options ?
+         ** How does an application built in Java connect with a remote server and establish its identity ? What are the options ?
            keyStore will be used to store server certificates which the server will present to the client on SSL connection.
-        ** Command to view a key store : 
+         ** Command to view a key store : 
                 ** $keytool -list -v -keystore <nameofthekeystore.jks> 
                 
-        ** To View a key store we can also use Key Store Explorer tool from : https://keystore-explorer.org/downloads.html
-        ** The cacerts file is a collection of trusted certificate authority (CA) certificates. Oracle includes a cacerts file with its SSL support in  
-           the Java™ Secure Socket Extension (JSSE) tool kit and JDK. It contains certificate references for well-known Certificate authorities, such as           VeriSign™. Its format is the "keystore" format defined by Oracle. An administrator can edit the cacerts file with a command line tool (also   
-          provided by Oracle) called keytool
+         ** To View a key store we can also use Key Store Explorer tool from : https://keystore-explorer.org/downloads.html
+         ** The cacerts file is a collection of trusted certificate authority (CA) certificates. Oracle includes a cacerts file with its SSL support in  
+            the Java™ Secure Socket Extension (JSSE) tool kit and JDK. It contains certificate references for well-known Certificate authorities, such as             VeriSign™. Its format is the "keystore" format defined by Oracle. An administrator can edit the cacerts file with a command line tool (also   
+            provided by Oracle) called keytool
   
