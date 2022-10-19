@@ -1277,17 +1277,25 @@ In simple terminology, an index maps search keys to corresponding data on disk b
                  -Djavax.net.ssl.trustStore=/app/.certs/<applications own cert store like rapidssl.jks>   
     
          ** Java automatically looks for a certificate (or its root CA) in its keystores for all TLS requests.
-           If it’s found, the TLS handshake will be successfully established
+            If it’s found, the TLS handshake will be successfully established
+    
          ** What is SSL and What is TLS and what are the differences?      
-         ** What is trust store ?
-         ** What is key store ?
+    
+         ** What is trust store ? TrustStore setup is required for the successful connection at the client side and doesn't contain  private and 
+            sensitive information. Also TrustStore holds the certificates of external systems that you trust.
+    
+         ** What is key store ? Keystore contains private and sensitive information.
+    
          ** Keystores and truststores are repositories that contain cryptographic artifacts like certificates and private keys that are used for       
            cryptographic protocols such as TLS. A keystore contains personal certificates, plus the corresponding private keys that are used 
            to identify the owner of the certificate.
+    
          ** How can we debug TLS/SSL handshake from a Java application ?              
               https://docs.oracle.com/javase/7/docs/technotes/guides/security/jsse/ReadDebug.html
+    
          ** How does an application built in Java connect with a remote server and establish its identity ? What are the options ?
-           keyStore will be used to store server certificates which the server will present to the client on SSL connection.
+            keyStore will be used to store server certificates which the server will present to the client on SSL connection.
+    
          ** Command to view a key store : 
                 ** $keytool -list -v -keystore <nameofthekeystore.jks> 
                 
