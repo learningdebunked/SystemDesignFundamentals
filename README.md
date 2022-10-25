@@ -440,6 +440,12 @@ Code snippet:
  ![Screen Shot 2022-05-25 at 6 21 30 AM](https://user-images.githubusercontent.com/7702406/170272019-63a8cf04-b6fa-4318-a436-b1869fb6f0cf.png)
  
 ****Service Mesh****
+ What is Service Mesh(SM)? 
+ 
+            *** SM is a dedicated infrastructure layer for making service to service communication safe , fast and reliable. The Serice mesh is a network 
+                of side car proxies that are deployed alongside individual application containers. The sidecar proxies intercept all network traffic and 
+                implement various platform requirements pertaining to service-to-service communication so that application does not need to implement 
+                functionalities that all cloud native applications require
  
  Why do we need Service Mesh. Let's look at how microservices would interact without a Service Mesh
  
