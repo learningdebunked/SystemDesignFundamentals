@@ -1312,3 +1312,8 @@ In simple terminology, an index maps search keys to corresponding data on disk b
   
          ** How does TLS SSL provide security ?
          ** References: https://dzone.com/articles/ssl-in-java
+
+**How to debug Production issues**
+         ** Run JFR , stands for Java Flight recording
+         ** JFR is available since Java 12
+         ** 
