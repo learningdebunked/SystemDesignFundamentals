@@ -1315,6 +1315,8 @@ In simple terminology, an index maps search keys to corresponding data on disk b
 
 **How to debug Production issues**
     
-         ** Run JFR , stands for Java Flight recording
+         ** JDK Flight Recorder is a system for collecting diagnostic and profiling data about a running Java application. Integrated into the Java 
+            Virtual Machine (JVM) with extremely low performance overhead, it is designed for profiling heavily loaded production environments. Run JFR , 
+            stands for Java Flight recording
          ** JFR is available since Java 12
-         ** 
+         ** //TODO Understand Java Mission Control and understand the basics
