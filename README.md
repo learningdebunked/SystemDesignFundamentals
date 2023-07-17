@@ -1320,3 +1320,20 @@ In simple terminology, an index maps search keys to corresponding data on disk b
             stands for Java Flight recording
          ** JFR is available since Java 12
          ** //TODO Understand Java Mission Control and understand the basics
+
+**Architectural landscape patterns**   
+
+         ** Monolith
+         ** N-Tierd
+         ** Serverless
+         ** SOA
+         ** Microservices
+         ** Peer to Peer
+
+ **Architectural structured patterns**
+ 
+         ** Layered
+         ** Microkernel
+         ** CQRS
+         ** Event sourcing
+         ** CQRS + Event sourcing
