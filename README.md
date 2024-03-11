@@ -194,7 +194,7 @@ So to mitigate this :
 3) Another approach is Cache busting. You cache assets with a hash or e-tag {is unique compared to previous versions}
 
 **Cache**
-
+//TODO Explore Megacache and other cache solutions for read heavy and write heavy applications
    ** When to use Cache ?
        ** Data is read frequently but modified infrequently
        ** Expiration time or TTL should not be too high nor too low
