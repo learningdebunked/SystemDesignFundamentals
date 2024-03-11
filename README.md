@@ -210,6 +210,7 @@ So to mitigate this :
 
    ** What are the caching strategies?
       ** Read Strategies
+      
          ** cache Aside (Lazy Loading)
             ** Tries cache first and then fetches from DB on Cache miss , when cache 
                misses are rare or latency of a cache miss + DB read is acceptable
@@ -217,7 +218,16 @@ So to mitigate this :
             ** Cache handles DB Reads , transparently fetching missing data on cache miss. This abstracts DB logic 
                from app code and keeps cache consistenly populated by handling misses automatically
             
-      ** Write Strategies
+      ** Write Strategies 
+         1) Write Around :  writes by pass the cache and go directly to DB
+         2) Write back ( Delayed write ) : writes to cache first , async write to DB later , needed in write heavy environments where slight data loss is tolerable
+         3) Write through  : When data consistency is critical , write to both cache and DB
+
+      ** What strategies are used in real life ? 
+
+         1) Cache Aside + Write through
+         2) Read through + Write back
+         
 There are three ways to implement Cache busting:
 
 1) File name versioning
