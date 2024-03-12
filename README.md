@@ -387,6 +387,11 @@ The 3 dimensions are:
 
 Vertical scaling can also be an option however there is a hard end to the computing power and cost rise is exponential
 
+Diagonal scaling : Scaling both horizontally and vertically. Whatsapp followed this methodology.
+
+![image](https://github.com/learningdebunked/SystemDesignFundamentals/assets/7702406/e68e7850-1e3f-4a43-90c0-77c1655e5f71)
+
+
 What role does API Gateway play in Microservices?
 
 Without introducing Gateway will lead to change in client code which is not desirable. Refer to section API Gateway
