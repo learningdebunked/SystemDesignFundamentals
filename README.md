@@ -229,6 +229,8 @@ So to mitigate this :
          2) Read through + Write back
 
 cache shadowing -- allows us to route a percentage of traffic to the original data source and consistently compare the results with the cache, ensuring ongoing consistency between the cached data and the data source. Monitoring cache hit rates, error percentages, and similar metrics provides valuable insights for devising an effective cache invalidation strategy.
+
+CAffeine is a java library where multiple processes within a worker share Caffeine while all the workers share the Redis cluster or any enterprise cache  for data retrieval. This strategy is known as multi layered cache strategy
 ![image](https://github.com/learningdebunked/SystemDesignFundamentals/assets/7702406/9c542c93-bf6a-46a3-9517-9f18ba71dce2)
 
          
