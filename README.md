@@ -29,6 +29,7 @@
 
 **Identity and Access Management**
     TODO Kerberos vs IPSec 
+    TODO Federate authentication
 
 **What is a socket ? what is a connection ?**
 
