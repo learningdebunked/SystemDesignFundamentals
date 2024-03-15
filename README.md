@@ -1372,3 +1372,6 @@ In simple terminology, an index maps search keys to corresponding data on disk b
          ** CQRS
          ** Event sourcing
          ** CQRS + Event sourcing
+
+
+![image](https://github.com/learningdebunked/SystemDesignFundamentals/assets/7702406/2e2968aa-af9f-4e78-a032-b3c26904b1a7)
