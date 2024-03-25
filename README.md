@@ -307,6 +307,20 @@ The disadvantages could be :
 2) API Gateway could be a SPOF
 3) Increase the latency as this will become an additional hop between client and the back end services
 
+** API Security **
+
+- Use HTTPS
+- Use OAuth2
+- Use WebAuthn
+- Use Leveled API Keys
+- Authorization
+- Rate Limiting
+- API Versioning
+- Whitelisting
+- Check OWASP API Security Risks
+- Use API Gateway
+- Error Handling
+- Input Validation
 
 **What is Consistent Hashing?
 What is consistent hashing with Vnodes?**
