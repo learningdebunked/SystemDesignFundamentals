@@ -283,6 +283,7 @@ Applications of API Gateway range from
 8) Error handling
 9) Caching
 
+//TODO Try installing a gateway product and understand the capabilities in the diagram
 ![image](https://github.com/learningdebunked/SystemDesignFundamentals/assets/7702406/3d8e38cf-ce8f-4b19-8c68-1fd70cdea1f0)
 
 
