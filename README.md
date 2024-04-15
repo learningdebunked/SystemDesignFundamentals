@@ -1392,3 +1392,17 @@ In simple terminology, an index maps search keys to corresponding data on disk b
 
 
 ![image](https://github.com/learningdebunked/SystemDesignFundamentals/assets/7702406/2e2968aa-af9f-4e78-a032-b3c26904b1a7)
+
+**Security**
+        ** CIA ( Confidentiality , Integrity & Availability ) is called assurance model 
+        ** Security Types:
+                ** Application  
+                ** Network 
+                ** Software Security
+                ** digitalattackmap.com -- can see the number of DDOS happening across the world
+                ** Risk = Threat * vulnerability
+                ** Social Engineering attack - prelevant attack
+                        ** Vishing -- using the phone
+                        ** Phishing -- using email 
+                        
+        
