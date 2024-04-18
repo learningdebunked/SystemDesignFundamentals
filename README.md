@@ -1404,5 +1404,20 @@ In simple terminology, an index maps search keys to corresponding data on disk b
                 ** Social Engineering attack - prelevant attack
                         ** Vishing -- using the phone
                         ** Phishing -- using email 
+                ** What is the surface of the attack or Attack surfaces?
+                ** Types of cyber attacks
+                         ** Passive - non invasive
+                         ** Active  -- break into system and steal info
+                         ** Attack surfaces
+                                 ** Software :  Represents the largest surface attack
+                                                     ** MAC Address filtering 
+                                                     ** Form jacking -- collect info using a form
+                                                     ** Crypto jacking  -- mine crypti using other's computer 
+                                                     ** Threat modelling tools -- 
+                                                     ** informationisbeautiful.net  -- website to show the data attacks and threats
+                                                     ** Viruses and Worms --  two common malicious programs
+                                                             ** Worms - self propagating
+                                                             ** Virus -- 
+                         
                         
         
