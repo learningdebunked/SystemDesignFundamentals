@@ -118,7 +118,10 @@ Load balancing algorithms
 3) Least connections
 4) Least Response time
 5) IP Hash 
-6) Consistent hashing 
+6) Consistent hashing
+
+   ![image](https://github.com/learningdebunked/SystemDesignFundamentals/assets/7702406/332935d4-20a1-46b6-82cb-af68beb612f9)
+
 
 **What are Proxies? What is a Forward Proxy and a Reverse Proxy?**
 
