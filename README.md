@@ -1422,7 +1422,9 @@ In simple terminology, an index maps search keys to corresponding data on disk b
                                                              ** Worms - self propagating
                                                              ** Virus -- 
                          
+
                         
-         ** ** Database scaling ****
+    ** ** Database scaling ****
+    
             ![image](https://github.com/learningdebunked/SystemDesignFundamentals/assets/7702406/e1b24f93-691b-47fa-b695-032140f3c4bf)
 
