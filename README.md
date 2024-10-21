@@ -122,6 +122,23 @@ Load balancing algorithms
 
    ![image](https://github.com/learningdebunked/SystemDesignFundamentals/assets/7702406/332935d4-20a1-46b6-82cb-af68beb612f9)
 
+What are the differences between a load balancer and an API gateway? 
+ 
+First, let's clarify some concepts before discussing the differences. 
+ 
+1️⃣ NLB (Network Load Balancer) is usually deployed before the API gateway, handling traffic routing based on IP. It does not parse the HTTP requests. 
+ 
+2️⃣ ALB (Application Load Balancer) routes requests based on HTTP header or URL and thus can provide richer routing rules. We can choose the load balancer based on routing requirements. For simple services with a smaller scale, one load balancer is enough. 
+ 
+3️⃣ The API gateway performs tasks more on the application level. So it has different responsibilities from the load balancer. 
+ 
+The diagram below shows the detail. Often, they are used in combination to provide a scalable and secure architecture for modern web apps. 
+ 
+Option a: ALB is used to distribute requests among different services. Due to the fact that the services implement their own rating limitation, authentication, etc., this approach is more flexible but requires more work at the service level. 
+ 
+Option b: An API gateway takes care of authentication, rate limiting, caching, etc., so there is less work at the service level. However, this option is less flexible compared with the ALB approach. 
+   
+
 
 **What are Proxies? What is a Forward Proxy and a Reverse Proxy?**
 
@@ -1427,4 +1444,7 @@ In simple terminology, an index maps search keys to corresponding data on disk b
     ** ** Database scaling ****
     
             ![image](https://github.com/learningdebunked/SystemDesignFundamentals/assets/7702406/e1b24f93-691b-47fa-b695-032140f3c4bf)
+
+
+            
 
