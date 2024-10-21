@@ -138,6 +138,7 @@ Option a: ALB is used to distribute requests among different services. Due to th
  
 Option b: An API gateway takes care of authentication, rate limiting, caching, etc., so there is less work at the service level. However, this option is less flexible compared with the ALB approach. 
    
+![image](https://github.com/user-attachments/assets/f323dfb6-b22b-400c-97fa-be02bbc525fc)
 
 
 **What are Proxies? What is a Forward Proxy and a Reverse Proxy?**
