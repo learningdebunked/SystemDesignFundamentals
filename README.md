@@ -1447,5 +1447,16 @@ In simple terminology, an index maps search keys to corresponding data on disk b
             ![image](https://github.com/learningdebunked/SystemDesignFundamentals/assets/7702406/e1b24f93-691b-47fa-b695-032140f3c4bf)
 
 
-            
+** RESILIENCY ***            
 
+In distributed systems, especially at hyperscale, achieving resilience and reliability becomes increasingly complex. One powerful technique that often flies under the radar is the Service Brownout Pattern.
+
+Unlike a complete service outage, a brownout allows for a graceful degradation of services during periods of high load or partial failure. Instead of going fully dark, a system temporarily reduces non-essential features while maintaining core functionality. This ensures a better experience for the end user and avoids a total shutdown, which can be catastrophic in hyperscale environments.
+
+Brownouts help improve resilience by:
+
+1. Shedding non-critical workloads during traffic spikes, keeping essential services running.
+
+2. Giving control to operators to gradually scale back features without sacrificing critical operations.
+
+3. Providing a softer failure mode that reduces recovery complexity, making it easier to bring the system back to full strength once the pressure subsides.
