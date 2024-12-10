@@ -1482,3 +1482,7 @@ Brownouts help improve resilience by:
 2. Giving control to operators to gradually scale back features without sacrificing critical operations.
 
 3. Providing a softer failure mode that reduces recovery complexity, making it easier to bring the system back to full strength once the pressure subsides.
+
+**Multithreading**
+
+![image](https://github.com/user-attachments/assets/c1b3618a-3820-45bb-9133-d9aea912d90c)
