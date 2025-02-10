@@ -343,6 +343,22 @@ This happens when the cache is down and all the requests go to the database.
 There are two ways to solve this problem. One is to set up a circuit breaker, and when the cache is down, the application services cannot visit the cache or the database. The other is to set up a cluster for the cache to improve cache availability.
 
 
+5. Cache stampede
+     https://en.wikipedia.org/wiki/Cache_stampede
+     A cache stampede is a type of cascading failure that can occur when massively parallel computing systems with caching mechanisms
+     come under a very high load. This behaviour is sometimes also called dog-piling
+7. Cache pollution
+   https://en.wikipedia.org/wiki/Cache_pollution
+   Cache pollution describes situations where an executing computer program loads data into CPU cache unnecessarily,[1] thus causing other useful data to be evicted from the cache into lower
+   levels of the memory hierarchy, degrading performance. For example, in a multi-core processor, one core may replace the blocks fetched by other cores into shared cache, or prefetched v
+   blocks may replace demand-fetched blocks from the cache.
+9. Negative cache
+   https://en.wikipedia.org/wiki/Negative_cache
+   In computer programming, negative cache is a cache that also stores "negative" responses, i.e. failures.
+   This means that a program remembers the result indicating a failure even after the cause has been corrected.
+   Usually negative cache is a design choice, but it can also be a software bug.
+
+
 **API Gateway** 
 Traditional architectures relied on clients making direct calls to the BE APIs. The disadvantage of this is a force upgrade of the client which is not a desirable experience. There a two ways to mitigate this 1) BFF {backend for front end }, similar to API Gateway or an extension to API Gateway and 2) a plain API Gateway
 
